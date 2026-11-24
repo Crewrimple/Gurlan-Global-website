@@ -38,6 +38,22 @@ it('renders each page in all supported languages', function (string $locale, ?st
     'Uzbek news' => ['uz', 'news', 'site.news', 'Hozircha yangiliklar yo‘q.'],
 ]);
 
+it('links to the Uzum store from the header and product page in every language', function (string $locale, string $storeLabel, string $shopLabel) {
+    $response = $this->get(route('site.page', ['locale' => $locale, 'page' => 'products']));
+    $uzumStoreUrl = 'https://uzum.uz/ru/shop/gurlanglobal';
+
+    $response->assertOk()
+        ->assertSee($storeLabel)
+        ->assertSee($shopLabel)
+        ->assertSee('class="catalog-link" href="'.$uzumStoreUrl.'" target="_blank" rel="noopener noreferrer"', false)
+        ->assertSee('class="uzum-nav-link" href="'.$uzumStoreUrl.'" target="_blank" rel="noopener noreferrer"', false)
+        ->assertSee('class="solid-button catalog-store-button" href="'.$uzumStoreUrl.'" target="_blank" rel="noopener noreferrer"', false);
+})->with([
+    'Russian product page' => ['ru', 'Наши товары на маркетплейсе Uzum', 'Купить на маркетплейсе Uzum'],
+    'English product page' => ['en', 'Our products on the Uzum marketplace', 'Shop on the Uzum marketplace'],
+    'Uzbek product page' => ['uz', 'Mahsulotlarimiz Uzum marketpleysida', 'Uzum marketpleysida xarid qilish'],
+]);
+
 it('omits Javlon Ismoilov from the company team in every language', function (string $locale) {
     $response = $this->get(route('site.page', ['locale' => $locale, 'page' => 'about']));
 

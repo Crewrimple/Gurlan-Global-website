@@ -462,6 +462,10 @@ textarea:focus-visible {
     transition: color .22s ease, transform .22s ease;
 }
 
+.mobile-menu nav a.uzum-nav-link {
+    color: var(--green-light);
+}
+
 .mobile-menu nav a:hover {
     transform: translateX(6px);
     color: #c5ffc9;
@@ -2196,6 +2200,12 @@ textarea:focus-visible {
     letter-spacing: -.035em;
 }
 
+.catalog-store-action {
+    display: flex;
+    justify-content: flex-end;
+    margin: -20px 0 30px;
+}
+
 .catalog-tabs {
     flex: 0 0 auto;
     display: flex;
@@ -2573,7 +2583,7 @@ textarea:focus-visible {
     }
 
     .desktop-nav {
-        gap: 16px;
+        gap: 12px;
     }
 
     .desktop-nav a {
@@ -2581,7 +2591,7 @@ textarea:focus-visible {
     }
 
     .header-actions {
-        gap: 6px;
+        gap: 4px;
     }
 
     .catalog-link {
@@ -2603,6 +2613,29 @@ textarea:focus-visible {
     }
 }
 
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .desktop-nav {
+        gap: 12px;
+    }
+
+    .desktop-nav a {
+        font-size: 12px;
+    }
+
+    .header-actions {
+        gap: 4px;
+    }
+
+    .catalog-link {
+        padding-inline: 8px;
+        font-size: 10px;
+    }
+
+    .header-contact {
+        display: none;
+    }
+}
+
 @media (max-width: 1000px) {
     .contact-form-showcase {
         grid-template-columns: 1fr;
@@ -2619,6 +2652,19 @@ textarea:focus-visible {
     }
 }
 
+@media (min-width: 851px) and (max-width: 1024px) {
+    .desktop-nav,
+    .catalog-link,
+    .header-contact,
+    .phone-icon {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+}
+
 @media (max-width: 850px) {
     .section-shell {
         width: calc(100% - 44px);
@@ -2629,6 +2675,11 @@ textarea:focus-visible {
     .header-contact,
     .phone-icon {
         display: none;
+    }
+
+    .catalog-store-action {
+        justify-content: flex-start;
+        margin: -8px 0 24px;
     }
 
     .menu-toggle {

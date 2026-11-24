@@ -6,6 +6,8 @@
     @php
         $english = $locale === 'en';
         $uzbek = $locale === 'uz';
+        $uzumStoreUrl = 'https://uzum.uz/ru/shop/gurlanglobal';
+        $uzumShopLabel = $english ? 'Shop on the Uzum marketplace' : ($uzbek ? 'Uzum marketpleysida xarid qilish' : 'Купить на маркетплейсе Uzum');
         $productGroups = [
             'women' => range(1, 15),
             'men' => range(1, 14),
@@ -28,6 +30,12 @@
                 <button type="button" role="tab" aria-selected="false" data-product-category="fabric">{{ $english ? 'Fabric' : ($uzbek ? 'Mato' : 'Полотно') }}</button>
                 <button type="button" role="tab" aria-selected="false" disabled>{{ $english ? 'Yarn' : ($uzbek ? 'Ip-kalava' : 'Пряжа') }}</button>
             </div>
+        </div>
+
+        <div class="catalog-store-action">
+            <a class="solid-button catalog-store-button" href="{{ $uzumStoreUrl }}" target="_blank" rel="noopener noreferrer">
+                {{ $uzumShopLabel }} <span aria-hidden="true">↗</span>
+            </a>
         </div>
 
         @foreach ($productGroups as $category => $items)

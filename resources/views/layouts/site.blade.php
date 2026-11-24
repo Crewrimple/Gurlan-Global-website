@@ -3,6 +3,8 @@
     $uzbek = $locale === 'uz';
     $homeUrl = route('site.page', ['locale' => $locale]);
     $contactUrl = route('site.page', ['locale' => $locale, 'page' => 'contact']);
+    $uzumStoreUrl = 'https://uzum.uz/ru/shop/gurlanglobal';
+    $uzumStoreLabel = $english ? 'Our products on the Uzum marketplace' : ($uzbek ? 'Mahsulotlarimiz Uzum marketpleysida' : 'Наши товары на маркетплейсе Uzum');
     $mapUrl = 'https://www.google.com/maps/place/Gurlan+Global+Teks/@41.8263463,60.3761645,17z/data=!3m1!4b1!4m6!3m5!1s0x41de3d34acd9eea7:0x3b846a79d9fbb837!8m2!3d41.8263463!4d60.3761645!16s%2Fg%2F11r_9v7gdh';
     $navigation = $uzbek
         ? [
@@ -58,8 +60,8 @@
             </nav>
 
             <div class="header-actions">
-                <a class="catalog-link" href="{{ route('site.page', ['locale' => $locale, 'page' => 'products']) }}" aria-label="{{ $english ? 'View product range' : ($uzbek ? 'Mahsulotlar assortimentini ko‘rish' : 'Посмотреть ассортимент продукции') }}">
-                    <span>{{ $english ? 'Product range' : ($uzbek ? 'Assortiment' : 'Ассортимент') }}</span>
+                <a class="catalog-link" href="{{ $uzumStoreUrl }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $uzumStoreLabel }}">
+                    <span>{{ $uzumStoreLabel }}</span>
                     <b>↗</b>
                 </a>
                 <a class="header-contact" href="{{ $contactUrl }}">{{ $english ? 'Contact us' : ($uzbek ? 'Biz bilan bog‘laning' : 'Связаться с нами') }}</a>
@@ -85,6 +87,7 @@
             @foreach ($navigation as $item)
                 <a href="{{ route('site.page', ['locale' => $locale, 'page' => $item['page']]) }}" @if ($page === $item['page']) aria-current="page" @endif>{{ $item['title'] }}</a>
             @endforeach
+            <a class="uzum-nav-link" href="{{ $uzumStoreUrl }}" target="_blank" rel="noopener noreferrer">{{ $uzumStoreLabel }} <span aria-hidden="true">↗</span></a>
         </nav>
         <a class="mobile-menu-contact" href="{{ $contactUrl }}">{{ $english ? 'Contact us' : ($uzbek ? 'Biz bilan bog‘laning' : 'Связаться с нами') }} ↗</a>
         <div class="mobile-menu-languages">
