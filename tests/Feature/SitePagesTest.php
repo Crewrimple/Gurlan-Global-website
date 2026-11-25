@@ -38,6 +38,16 @@ it('renders each page in all supported languages', function (string $locale, ?st
     'Uzbek news' => ['uz', 'news', 'site.news', 'Hozircha yangiliklar yo‘q.'],
 ]);
 
+it('shows homepage product cards without links or arrow icons and keeps the catalog link', function () {
+    $response = $this->get('/ru');
+
+    $response->assertOk()
+        ->assertSee('<article class="product-tile product-tile-1">', false)
+        ->assertDontSee('<a class="product-tile', false)
+        ->assertDontSee('<b aria-hidden="true">↗</b>', false)
+        ->assertSee('Смотреть ассортимент');
+});
+
 it('links to the Uzum store from the header and product page in every language', function (string $locale, string $storeLabel, string $shopLabel) {
     $response = $this->get(route('site.page', ['locale' => $locale, 'page' => 'products']));
     $uzumStoreUrl = 'https://uzum.uz/ru/shop/gurlanglobal';
@@ -227,7 +237,7 @@ it('uses optimized images for the home, about and production pages', function ()
 
     $this->get('/ru/about')
     ->assertOk()
-    ->assertSee('gurlan-assets/about/header/DSC04412-optimized.jpg')
+    ->assertSee('gurlan-assets/about/header/office-building.jpg')
     ->assertSee('gurlan-assets/about/about_s6/abu.photographer-84-optimized.jpg');
 
     $this->get('/ru/production')

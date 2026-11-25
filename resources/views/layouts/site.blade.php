@@ -65,7 +65,7 @@
                     <b>↗</b>
                 </a>
                 <a class="header-contact" href="{{ $contactUrl }}">{{ $english ? 'Contact us' : ($uzbek ? 'Biz bilan bog‘laning' : 'Связаться с нами') }}</a>
-                <a class="phone-icon" href="tel:+998978570005" aria-label="+998 97 857 00 05">
+                <a class="phone-icon" href="tel:+998919858707" aria-label="+998 91 985 87 07">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.1 3.8 9.4 7l-1.6 2a14 14 0 0 0 7.2 7.2l2-1.6 3.2 2.3-.8 3.1a2 2 0 0 1-2.2 1.5A18.2 18.2 0 0 1 2.5 6.8 2 2 0 0 1 4 4.6l3.1-.8Z"/></svg>
                 </a>
                 <div class="language-switch" aria-label="{{ $english ? 'Language' : ($uzbek ? 'Til' : 'Язык') }}">
@@ -111,8 +111,8 @@
                         <a href="{{ $mapUrl }}" target="_blank" rel="noopener noreferrer">{{ $english ? 'Location' : ($uzbek ? 'Manzil' : 'Локация') }} <span>↗</span></a>
                     </div>
                 </div>
-                <a class="partner-phone" href="tel:+998978570005">
-                    <span>+998 97 857 00 05</span>
+                <a class="partner-phone" href="tel:+998919858707">
+                    <span>+998 91 985 87 07</span>
                     <small>{{ $english ? 'Information Desk:' : ($uzbek ? 'Ma’lumot uchun:' : 'Справочная:') }}</small>
                 </a>
             </div>
@@ -130,10 +130,10 @@
             </div>
             <div class="footer-column">
                 <h2>{{ $english ? 'Contacts' : ($uzbek ? 'Aloqa' : 'Контакты') }}</h2>
-                <a href="tel:+998978570005">+998 97 857 00 05</a>
+                <a href="tel:+998919858707">+998 91 985 87 07</a>
                 <a href="mailto:gurlanglobal@gmail.com">gurlanglobal@gmail.com</a>
                 <a href="https://t.me/ggt_inc" target="_blank" rel="noopener noreferrer">Telegram</a>
-                <a href="https://wa.me/998978570005" target="_blank" rel="noopener noreferrer">Whatsapp</a>
+                <a href="https://wa.me/998919858707" target="_blank" rel="noopener noreferrer">Whatsapp</a>
                 <a href="https://www.instagram.com/ggt_textile/" target="_blank" rel="noopener noreferrer">Instagram</a>
             </div>
             <div class="footer-column footer-address">
@@ -144,6 +144,9 @@
         </div>
         <div class="footer-bottom">
             <a class="footer-catalog" href="{{ route('site.page', ['locale' => $locale, 'page' => 'products']) }}">{{ $english ? 'Product range' : ($uzbek ? 'Mahsulotlar assortimenti' : 'Ассортимент продукции') }} <span>↗</span></a>
+            <div class="footer-copyright">
+                {{ $english ? '© 2026 GURLAN GLOBAL TEKS. All rights reserved.' : ($uzbek ? '© 2026 GURLAN GLOBAL TEKS. Barcha huquqlar himoyalangan.' : '© 2026 GURLAN GLOBAL TEKS. Все права защищены.') }}
+            </div>
             <a href="{{ $contactUrl }}">{{ $english ? 'Order products' : ($uzbek ? 'Mahsulotlarga buyurtma berish' : 'Заказать продукцию') }} ↗</a>
         </div>
     </footer>

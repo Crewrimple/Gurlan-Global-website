@@ -11,40 +11,43 @@
                 ['Yigiruv ishlab chiqarishi', 'Trützschler, Rieter, Zinser va Saurer uskunalarida ip-kalava ishlab chiqariladi.', 'production/production_s1/DSC04440.jpg'],
                 ['Trikotaj ishlab chiqarishi', 'Mayer, Orizio, Pilotelli va Vilike uskunalarida trikotaj matolar tayyorlanadi.', 'production/production_s1/DSC04323.jpg'],
                 ['Bo‘yash ishlab chiqarishi', 'Matolar Corino, Ferraro va Odesi texnologiyalari yordamida bo‘yaladi.', 'production/production_s1/kras.jpg'],
-                ['Tikuv sexi', 'Juki, Kansai, Jack va Herbert Pavagon uskunalarida tayyor kiyimlar tikiladi.', 'production/production_s1/DSC04173.jpg'],
+                ['Tikuv ishlab chiqarishi', 'Juki, Kansai, Jack va Herbert Pavagon uskunalarida tayyor kiyimlar tikiladi.', 'production/production_s1/DSC04173.jpg'],
+                ['Trafaretli bosma ishlab chiqarishi', 'Matoga shablon orqali naqshlar tushiriladi, bu jarayonda Fabrobrand uskunalari qo‘llaniladi.', 'production/production_s5/screen-printing-workshop.png'],
             ]
             : ($english
                 ? [
                 ['Spinning Production', 'Yarn production using equipment from Trützschler, Rieter, Zinser and Saurer.', 'production/production_s1/DSC04440.jpg'],
                 ['Knitting Production', 'Knitted fabrics made on equipment by Mayer, Orizio, Pilotelli and Vilike.', 'production/production_s1/DSC04323.jpg'],
                 ['Dyeing Production', 'Fabric dyeing using technologies from Corino, Ferraro and Odesi.', 'production/production_s1/kras.jpg'],
-                ['Sewing Department', 'Finished garments made on equipment from Juki, Kansai, Jack and Herbert Pavagon.', 'production/production_s1/DSC04173.jpg'],
+                ['Sewing Production', 'Finished garments made on equipment from Juki, Kansai, Jack and Herbert Pavagon.', 'production/production_s1/DSC04173.jpg'],
+                ['Screen Printing Production', 'Fabric designs are applied through screen printing using Fabrobrand equipment.', 'production/production_s5/screen-printing-workshop.png'],
                 ]
                 : [
                 ['Прядильное производство', 'Производство пряжи с использованием оборудования Trützschler, Rieter, Zinser и Saurer.', 'production/production_s1/DSC04440.jpg'],
                 ['Вязальное производство', 'Производство трикотажных полотен на оборудовании Mayer, Orizio, Pilotelli и Vilike.', 'production/production_s1/DSC04323.jpg'],
                 ['Красильное производство', 'Окрашивание тканей с применением технологий Corino, Ferraro и Odesi.', 'production/production_s1/kras.jpg'],
-                ['Швейный цех', 'Производство готовых изделий на оборудовании Juki, Kansai, Jack и Herbert Pavagon.', 'production/production_s1/DSC04173.jpg'],
+                ['Швейное производство', 'Производство готовых изделий на оборудовании Juki, Kansai, Jack и Herbert Pavagon.', 'production/production_s1/DSC04173.jpg'],
+                ['Производство трафаретной печати', 'Трафаретное нанесение рисунков на ткань с использованием оборудования Fabrobrand.', 'production/production_s5/screen-printing-workshop.png'],
                 ]);
         $capacities = $uzbek
             ? [
                 ['+', '4 000', 'tonna', 'ip-kalava', 'Ishlab chiqariladigan mahsulot turlari'],
-                ['Gacha', '300', 'tonna', 'trikotaj mato', 'QATTIQ QOTISHMALAR: mashinasozlik, aviatsiya, kemasozlik va boshqa transport sohalari uchun quvurlar, sterjenlar va profillar'],
+                ['', '300', 'tonna Gacha', 'trikotaj mato', 'QATTIQ QOTISHMALAR: mashinasozlik, aviatsiya, kemasozlik va boshqa transport sohalari uchun quvurlar, sterjenlar va profillar'],
                 ['+', '3 500', 'tonna', 'bo‘yalgan mato', 'YUMSHOQ QOTISHMALAR: qurilish, ko‘priksozlik va transport uchun buyurtmachi chizmalariga muvofiq standart profillar'],
-                ['Gacha', '9', 'million', 'tayyor kiyim', 'Rossiya Federatsiyasi va xorijdagi buyurtmachilar uchun ishlab chiqariladi'],
+                ['', '9 000 000', 'Gacha', 'tayyor kiyim', 'Rossiya Federatsiyasi va xorijdagi buyurtmachilar uchun ishlab chiqariladi'],
             ]
             : ($english
                 ? [
                 ['+', '4,000', 'tons', 'of yarn', 'Product nomenclature'],
-                ['Up to', '300', 'tons', 'of knitted fabrics', 'HARD ALLOYS: pipes, rods and profiles for engineering, aviation, shipbuilding and other transport sectors'],
+                ['', '300', 'tons Up to', 'of knitted fabrics', 'HARD ALLOYS: pipes, rods and profiles for engineering, aviation, shipbuilding and other transport sectors'],
                 ['+', '3,500', 'tons', 'of dyed fabrics', 'SOFT ALLOYS: standard profiles made to customer drawings for construction, bridge engineering and transport'],
-                ['Up to', '9', 'million', 'finished garments', 'Manufactured for customers in the Russian Federation and abroad'],
+                ['', '9,000,000', 'Up to', 'finished garments', 'Manufactured for customers in the Russian Federation and abroad'],
                 ]
                 : [
                 ['+', '4 000', 'тонн', 'пряжи', 'Номенклатура производимой продукции'],
-                ['до', '300', 'тонн', 'трикотажных полотен', 'HARD ALLOYS: трубы, прутки, профили для машиностроения, авиации, судостроения и других отраслей транспорта'],
+                ['', '300', 'тонн до', 'трикотажных полотен', 'HARD ALLOYS: трубы, прутки, профили для машиностроения, авиации, судостроения и других отраслей транспорта'],
                 ['+', '3 500', 'тонн', 'окрашенных тканей', 'SOFT ALLOYS: стандартный профиль по чертежам заказчика для строительства, мостостроения и транспорта'],
-                ['до', '9', 'миллионов', 'готовых изделий', 'Для заказчиков Российской Федерации и зарубежных стран'],
+                ['', '9 000 000', 'до', 'готовых изделий', 'Для заказчиков Российской Федерации и зарубежных стран'],
                 ]);
         $workshops = $uzbek
             ? [
@@ -52,7 +55,8 @@
                 ['Trikotaj ishlab chiqarishi', ['Turli xil trikotaj matolar', 'Mayer, Orizio va Pilotelli texnologiyalari', 'Buyurtmachi talablariga moslashuvchan ishlab chiqarish'], 'production/production_s5/DSC04316.jpg'],
                 ['Bo‘yash ishlab chiqarishi', ['Sifat nazorati bilan matolarni bo‘yash', 'Corino, Ferraro va Odesi texnologiyalari', 'Rang mustahkamligi va ekologik jarayonlar'], 'production/production_s5/DSC01066-optimized.jpg'],
                 ['Bosma va tikuvchilik ishlab chiqarishi', ['Shablonli bosma va naqsh tushirish', 'To‘liq siklli tayyor kiyim ishlab chiqarish', 'Fabrobrand, Juki, Kansai va Jack uskunalari', 'Yiliga 9 million donagacha kiyim'], 'production/production_s5/DSC04263.jpg'],
-                ['Prokat uchastkasi', ['Dizayn va 3D modellashtirish', 'CNC dastgohlari uchun dasturlar tayyorlash', 'Press qoliplarini ishlab chiqarish'], 'production/production_s5/DSC04386.jpg'],
+                ['Trafaretli bosma ishlab chiqarishi', ['Matoga shablon orqali naqsh tushirish', 'Oval va dumaloq bosma uskunalari', 'Rang va sifat nazorati'], 'production/production_s5/screen-printing-workshop.png'],
+                ['Ofis va maʼmuriy bino', ['Korxona boshqaruvi va loyiha bo‘limlari', 'Sifat nazorati va tashqi hamkorlik bilan ishlash', 'Zamonaviy hamda qulay ish muhiti'], 'production/production_s5/office-building.jpg'],
             ]
             : ($english
                 ? [
@@ -60,14 +64,16 @@
                 ['Knitting Production', ['Different types of knitted fabrics', 'Mayer, Orizio and Pilotelli technologies', 'Flexible production to customer requirements'], 'production/production_s5/DSC04316.jpg'],
                 ['Dyeing Production', ['Fabric dyeing with quality control', 'Corino, Ferraro and Odesi technologies', 'Color fastness and eco-friendly processes'], 'production/production_s5/DSC01066-optimized.jpg'],
                 ['Printing and Garment Manufacturing', ['Screen printing and design application', 'Full-cycle garment production', 'Fabrobrand, Juki, Kansai and Jack equipment', 'Up to 9 million garments a year'], 'production/production_s5/DSC04263.jpg'],
-                ['Rolling Department', ['Design and 3D modelling', 'CNC machine programming', 'Manufacturing press tools'], 'production/production_s5/DSC04386.jpg'],
+                ['Screen Printing Production', ['Screen-printed designs on fabric', 'Oval and rotary printing equipment', 'Colour and quality control'], 'production/production_s5/screen-printing-workshop.png'],
+                ['Office and Administration Building', ['Company management and project departments', 'Quality control and partner relations', 'Modern and comfortable working environment'], 'production/production_s5/office-building.jpg'],
                 ]
                 : [
                 ['Прядильное производство', ['Производство пряжи KD и OE', 'Современное оборудование ведущих брендов', 'Стабильное качество и высокая прочность продукции'], 'production/production_s5/DSC04386.jpg'],
                 ['Вязальное производство', ['Производство трикотажных полотен различных типов', 'Технологии Mayer, Orizio, Pilotelli', 'Гибкость под требования заказчика'], 'production/production_s5/DSC04316.jpg'],
                 ['Красильное производство', ['Окрашивание тканей с контролем качества', 'Технологии Corino, Ferraro, Odesi', 'Стойкость цвета и экологичные процессы'], 'production/production_s5/DSC01066-optimized.jpg'],
                 ['Печать и швейное производство', ['Трафаретная печать и нанесение принтов', 'Производство готовых изделий полного цикла', 'Оборудование Fabrobrand, Juki, Kansai, Jack', 'До 9 млн изделий в год'], 'production/production_s5/DSC04263.jpg'],
-                ['Прокатный участок', ['Проектирование и 3D-моделирование', 'Подготовка программ для ЧПУ станков', 'Изготовление прессового инструмента'], 'production/production_s5/DSC04386.jpg'],
+                ['Производство трафаретной печати', ['Трафаретное нанесение рисунков на ткань', 'Овальные и ротационные печатные машины', 'Контроль цвета и качества печати'], 'production/production_s5/screen-printing-workshop.png'],
+                ['Офис и административный корпус', ['Управление компанией и проектные подразделения', 'Контроль качества и работа с партнёрами', 'Современная и комфортная рабочая среда'], 'production/production_s5/office-building.jpg'],
                 ]);
     @endphp
 

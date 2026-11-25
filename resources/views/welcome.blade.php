@@ -165,15 +165,14 @@
             </div>
             <div class="product-showcase">
                 @foreach ($products as $index => $product)
-                    <a class="product-tile product-tile-{{ $index + 1 }}" href="{{ route('site.page', ['locale' => $locale, 'page' => 'products']) }}">
+                    <article class="product-tile product-tile-{{ $index + 1 }}">
                         <img src="{{ asset('gurlan-assets/'.$product[2]) }}" alt="{{ $product[0] }}" loading="lazy">
                         <span class="product-tile-shade"></span>
-                        <span class="product-tile-copy">
+                        <div class="product-tile-copy">
                             <strong>{{ $product[0] }}</strong>
                             <small>{{ $product[1] }}</small>
-                            <b aria-hidden="true">↗</b>
-                        </span>
-                    </a>
+                        </div>
+                    </article>
                 @endforeach
             </div>
             <a class="text-button" href="{{ route('site.page', ['locale' => $locale, 'page' => 'products']) }}">{{ $english ? 'View product range' : ($uzbek ? 'Assortimentni ko‘rish' : 'Смотреть ассортимент') }} <span>↗</span></a>

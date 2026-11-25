@@ -22,7 +22,7 @@
                 </article>
                 <article>
                     <h2>{{ $english ? 'Phone' : ($uzbek ? 'Telefon' : 'Телефон') }}</h2>
-                    <a href="tel:+998978570005">+998 97 857 00 05</a>
+                    <a href="tel:+998919858707">+998 91 985 87 07</a>
                 </article>
                 <article>
                     <h2>Telegram</h2>
@@ -30,7 +30,7 @@
                 </article>
                 <article>
                     <h2>WhatsApp</h2>
-                    <a href="https://wa.me/998978570005" target="_blank" rel="noopener noreferrer">+998 97 857 00 05</a>
+                    <a href="https://wa.me/998919858707" target="_blank" rel="noopener noreferrer">+998 91 985 87 07</a>
                 </article>
                 <article>
                     <h2>Instagram</h2>
@@ -133,7 +133,7 @@
                             </div>
                             <div class="contact-aside-links">
                                 <a href="https://t.me/ggt_inc" target="_blank" rel="noopener noreferrer">Telegram ↗</a>
-                                <a href="https://wa.me/998978570005" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+                                <a href="https://wa.me/998919858707" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
                             </div>
                         </article>
                         <article class="contact-aside-card">
