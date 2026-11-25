@@ -237,7 +237,7 @@ it('uses optimized images for the home, about and production pages', function ()
 
     $this->get('/ru/about')
     ->assertOk()
-    ->assertSee('gurlan-assets/about/header/office-building.jpg')
+    ->assertSee('gurlan-assets/about/header/office-building-source.jpg')
     ->assertSee('gurlan-assets/about/about_s6/abu.photographer-84-optimized.jpg');
 
     $this->get('/ru/production')

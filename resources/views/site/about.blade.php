@@ -69,7 +69,7 @@
     @endphp
 
     <section class="page-hero image-hero">
-        <img src="{{ asset('gurlan-assets/about/header/office-building.jpg') }}" alt="" fetchpriority="high">
+        <img src="{{ asset('gurlan-assets/about/header/office-building-source.jpg') }}" alt="" fetchpriority="high">
         <div class="page-hero-shade"></div>
         <h1>{{ $english ? 'ABOUT COMPANY' : ($uzbek ? 'KOMPANIYA HAQIDA' : 'О КОМПАНИИ') }}</h1>
     </section>

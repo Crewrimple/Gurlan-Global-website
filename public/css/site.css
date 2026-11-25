@@ -1145,6 +1145,7 @@ textarea:focus-visible {
 
 .image-hero img {
     object-fit: cover;
+    object-position: center 35%;
 }
 
 .production-hero img {
@@ -1164,7 +1165,9 @@ textarea:focus-visible {
     font-size: clamp(44px, 6vw, 76px);
     font-weight: 700;
     line-height: 1;
+    text-align: center;
     text-transform: uppercase;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, .38);
 }
 
 .values-section {
