@@ -94,8 +94,8 @@
 
     <section class="home-hero" data-hero-slider>
         <div class="hero-slides">
-            <img class="hero-slide is-active" src="{{ asset('gurlan-assets/home/home_header/DSC04130.jpg') }}" alt="" data-hero-slide>
-            <img class="hero-slide" src="{{ asset('gurlan-assets/home/home_header/DSC04173.jpg') }}" alt="" data-hero-slide>
+            <img class="hero-slide is-active" src="{{ asset('gurlan-assets/home/home_header/DSC04130-optimized.jpg') }}" alt="" fetchpriority="high" data-hero-slide>
+            <img class="hero-slide" src="{{ asset('gurlan-assets/home/home_header/DSC04173.jpg') }}" alt="" fetchpriority="low" data-hero-slide>
         </div>
         <div class="hero-shade"></div>
         <div class="home-hero-copy">

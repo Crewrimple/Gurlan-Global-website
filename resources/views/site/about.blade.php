@@ -69,7 +69,7 @@
     @endphp
 
     <section class="page-hero image-hero">
-        <img src="{{ asset('gurlan-assets/about/header/DSC04412.jpg') }}" alt="" fetchpriority="high">
+        <img src="{{ asset('gurlan-assets/about/header/DSC04412-optimized.jpg') }}" alt="" fetchpriority="high">
         <div class="page-hero-shade"></div>
         <h1>{{ $english ? 'ABOUT COMPANY' : ($uzbek ? 'KOMPANIYA HAQIDA' : 'О КОМПАНИИ') }}</h1>
     </section>
@@ -151,7 +151,7 @@
     </section>
 
     <section class="sustainability-section">
-        <img src="{{ asset('gurlan-assets/about/about_s6/abu.photographer-84.jpg') }}" alt="" loading="lazy">
+        <img src="{{ asset('gurlan-assets/about/about_s6/abu.photographer-84-optimized.jpg') }}" alt="" loading="lazy">
         <div class="sustainability-copy">
             <p class="eyebrow">{{ $english ? 'RESPONSIBLE PRODUCTION' : ($uzbek ? 'MAS’ULIYATLI ISHLAB CHIQARISH' : 'ОТВЕТСТВЕННОЕ ПРОИЗВОДСТВО') }}</p>
             <h2>{{ $english ? 'SUSTAINABLE DEVELOPMENT' : ($uzbek ? 'BARQAROR RIVOJLANISH' : 'УСТОЙЧИВОЕ РАЗВИТИЕ') }}</h2>
@@ -172,7 +172,9 @@
             </div>
             <div class="exhibition-grid">
                 @foreach (['vistvka_0_0.jpg', 'vistvka_0_1.jpg', 'vistvka_0_2.jpg'] as $image)
-                    <img src="{{ asset('gurlan-assets/about/about_s7/'.$image) }}" alt="{{ $english ? 'International exhibition' : ($uzbek ? 'Xalqaro ko‘rgazma' : 'Международная выставка') }}" loading="lazy">
+                    <div class="exhibition-photo">
+                        <img src="{{ asset('gurlan-assets/about/about_s7/'.$image) }}" alt="{{ $english ? 'International exhibition' : ($uzbek ? 'Xalqaro ko‘rgazma' : 'Международная выставка') }}" loading="lazy">
+                    </div>
                 @endforeach
             </div>
         </div>

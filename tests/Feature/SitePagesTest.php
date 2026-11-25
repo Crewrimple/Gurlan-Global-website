@@ -204,6 +204,38 @@ it('labels spinning, knitting and dyeing as production in every language', funct
     ],
 ]);
 
+it('renders production facility photos without numbered badges', function () {
+    $response = $this->get(route('site.page', ['locale' => 'ru', 'page' => 'production']));
+
+    $response->assertOk()
+    ->assertSee('gurlan-assets/production/production_s1/DSC04440.jpg')
+    ->assertSee('gurlan-assets/production/production_s1/DSC04323.jpg')
+    ->assertSee('gurlan-assets/production/production_s1/kras.jpg')
+    ->assertSee('gurlan-assets/production/production_s1/DSC04173.jpg')
+    ->assertDontSee('<span>01</span>', false)
+    ->assertDontSee('<span>02</span>', false)
+    ->assertDontSee('<span>03</span>', false)
+    ->assertDontSee('<span>04</span>', false);
+});
+
+it('uses optimized images for the home, about and production pages', function () {
+    $this->get('/ru')
+    ->assertOk()
+    ->assertSee('gurlan-assets/home/home_header/DSC04130-optimized.jpg')
+    ->assertSee('fetchpriority="high"', false)
+    ->assertSee('fetchpriority="low"', false);
+
+    $this->get('/ru/about')
+    ->assertOk()
+    ->assertSee('gurlan-assets/about/header/DSC04412-optimized.jpg')
+    ->assertSee('gurlan-assets/about/about_s6/abu.photographer-84-optimized.jpg');
+
+    $this->get('/ru/production')
+    ->assertOk()
+    ->assertSee('gurlan-assets/production/production_header/DSC04130-optimized.jpg')
+    ->assertSee('gurlan-assets/production/production_s5/DSC01066-optimized.jpg');
+});
+
 it('marks every production capacity value for count-up animation', function (string $locale, string $firstCapacity) {
     $response = $this->get(route('site.page', ['locale' => $locale, 'page' => 'production']));
 

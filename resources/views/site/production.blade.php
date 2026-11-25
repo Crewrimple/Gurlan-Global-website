@@ -50,7 +50,7 @@
             ? [
                 ['Yigiruv ishlab chiqarishi', ['KD va OE usullarida ip-kalava ishlab chiqarish', 'Yetakchi brendlarning zamonaviy uskunalari', 'Barqaror sifat va mahsulotning yuqori mustahkamligi'], 'production/production_s5/DSC04386.jpg'],
                 ['Trikotaj ishlab chiqarishi', ['Turli xil trikotaj matolar', 'Mayer, Orizio va Pilotelli texnologiyalari', 'Buyurtmachi talablariga moslashuvchan ishlab chiqarish'], 'production/production_s5/DSC04316.jpg'],
-                ['Bo‘yash ishlab chiqarishi', ['Sifat nazorati bilan matolarni bo‘yash', 'Corino, Ferraro va Odesi texnologiyalari', 'Rang mustahkamligi va ekologik jarayonlar'], 'production/production_s5/DSC01066.png'],
+                ['Bo‘yash ishlab chiqarishi', ['Sifat nazorati bilan matolarni bo‘yash', 'Corino, Ferraro va Odesi texnologiyalari', 'Rang mustahkamligi va ekologik jarayonlar'], 'production/production_s5/DSC01066-optimized.jpg'],
                 ['Bosma va tikuvchilik ishlab chiqarishi', ['Shablonli bosma va naqsh tushirish', 'To‘liq siklli tayyor kiyim ishlab chiqarish', 'Fabrobrand, Juki, Kansai va Jack uskunalari', 'Yiliga 9 million donagacha kiyim'], 'production/production_s5/DSC04263.jpg'],
                 ['Prokat uchastkasi', ['Dizayn va 3D modellashtirish', 'CNC dastgohlari uchun dasturlar tayyorlash', 'Press qoliplarini ishlab chiqarish'], 'production/production_s5/DSC04386.jpg'],
             ]
@@ -58,21 +58,21 @@
                 ? [
                 ['Spinning Production', ['KD and OE yarn production', 'Modern equipment from leading brands', 'Consistent quality and high product strength'], 'production/production_s5/DSC04386.jpg'],
                 ['Knitting Production', ['Different types of knitted fabrics', 'Mayer, Orizio and Pilotelli technologies', 'Flexible production to customer requirements'], 'production/production_s5/DSC04316.jpg'],
-                ['Dyeing Production', ['Fabric dyeing with quality control', 'Corino, Ferraro and Odesi technologies', 'Color fastness and eco-friendly processes'], 'production/production_s5/DSC01066.png'],
+                ['Dyeing Production', ['Fabric dyeing with quality control', 'Corino, Ferraro and Odesi technologies', 'Color fastness and eco-friendly processes'], 'production/production_s5/DSC01066-optimized.jpg'],
                 ['Printing and Garment Manufacturing', ['Screen printing and design application', 'Full-cycle garment production', 'Fabrobrand, Juki, Kansai and Jack equipment', 'Up to 9 million garments a year'], 'production/production_s5/DSC04263.jpg'],
                 ['Rolling Department', ['Design and 3D modelling', 'CNC machine programming', 'Manufacturing press tools'], 'production/production_s5/DSC04386.jpg'],
                 ]
                 : [
                 ['Прядильное производство', ['Производство пряжи KD и OE', 'Современное оборудование ведущих брендов', 'Стабильное качество и высокая прочность продукции'], 'production/production_s5/DSC04386.jpg'],
                 ['Вязальное производство', ['Производство трикотажных полотен различных типов', 'Технологии Mayer, Orizio, Pilotelli', 'Гибкость под требования заказчика'], 'production/production_s5/DSC04316.jpg'],
-                ['Красильное производство', ['Окрашивание тканей с контролем качества', 'Технологии Corino, Ferraro, Odesi', 'Стойкость цвета и экологичные процессы'], 'production/production_s5/DSC01066.png'],
+                ['Красильное производство', ['Окрашивание тканей с контролем качества', 'Технологии Corino, Ferraro, Odesi', 'Стойкость цвета и экологичные процессы'], 'production/production_s5/DSC01066-optimized.jpg'],
                 ['Печать и швейное производство', ['Трафаретная печать и нанесение принтов', 'Производство готовых изделий полного цикла', 'Оборудование Fabrobrand, Juki, Kansai, Jack', 'До 9 млн изделий в год'], 'production/production_s5/DSC04263.jpg'],
                 ['Прокатный участок', ['Проектирование и 3D-моделирование', 'Подготовка программ для ЧПУ станков', 'Изготовление прессового инструмента'], 'production/production_s5/DSC04386.jpg'],
                 ]);
     @endphp
 
     <section class="page-hero image-hero production-hero">
-        <img src="{{ asset('gurlan-assets/production/production_header/DSC04130.jpg') }}" alt="" fetchpriority="high">
+        <img src="{{ asset('gurlan-assets/production/production_header/DSC04130-optimized.jpg') }}" alt="" fetchpriority="high">
         <div class="page-hero-shade"></div>
         <h1>{{ $english ? 'PRODUCTION' : ($uzbek ? 'ISHLAB CHIQARISH' : 'ПРОИЗВОДСТВО') }}</h1>
     </section>
@@ -85,11 +85,10 @@
                 <a class="text-button" href="#workshops">{{ $english ? 'Our products' : ($uzbek ? 'Mahsulotlarimiz' : 'Наша продукция') }} <span>↘</span></a>
             </div>
             <div class="facility-grid">
-                @foreach ($facilities as $index => $facility)
+                @foreach ($facilities as $facility)
                     <article class="facility-card">
                         <img src="{{ asset('gurlan-assets/'.$facility[2]) }}" alt="{{ $facility[0] }}" loading="lazy">
                         <div>
-                            <span>{{ str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT) }}</span>
                             <h3>{{ $facility[0] }}</h3>
                             <p>{{ $facility[1] }}</p>
                         </div>

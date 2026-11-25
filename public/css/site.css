@@ -1394,11 +1394,29 @@ textarea:focus-visible {
     gap: 12px;
 }
 
+.exhibition-photo {
+    overflow: hidden;
+    border-radius: 12px;
+    transition: transform .32s ease, box-shadow .32s ease;
+}
+
 .exhibition-grid img {
+    display: block;
     width: 100%;
     aspect-ratio: 1.45;
-    border-radius: 12px;
+    border-radius: inherit;
     object-fit: cover;
+    transition: transform .75s cubic-bezier(.2, .7, .2, 1), filter .5s ease;
+}
+
+.exhibition-photo:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 34px rgba(13, 62, 41, .16);
+}
+
+.exhibition-photo:hover img {
+    transform: scale(1.06);
+    filter: brightness(1.05) saturate(1.08);
 }
 
 .production-complex {
@@ -1438,13 +1456,26 @@ textarea:focus-visible {
 .facility-card::after {
     position: absolute;
     inset: 0;
+    z-index: 1;
     background: linear-gradient(180deg, rgba(6, 32, 20, .03) 20%, rgba(6, 32, 20, .84) 100%);
     content: "";
+}
+
+.facility-card::before {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(115deg, transparent 28%, rgba(255, 255, 255, .16) 48%, transparent 68%);
+    content: "";
+    pointer-events: none;
+    transform: translateX(-120%);
+    transition: transform .8s cubic-bezier(.2, .7, .2, 1);
 }
 
 .facility-card img {
     position: absolute;
     inset: 0;
+    z-index: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -1454,34 +1485,25 @@ textarea:focus-visible {
 
 .facility-card:hover img,
 .workshop-card:hover img {
-    transform: scale(1.06);
-    filter: brightness(1) saturate(1.03);
+    transform: scale(1.08);
+    filter: brightness(1.06) saturate(1.1);
+}
+
+.facility-card:hover::before {
+    transform: translateX(120%);
 }
 
 .facility-card > div {
     position: absolute;
-    z-index: 1;
+    z-index: 3;
     right: 22px;
     bottom: 20px;
     left: 22px;
     transition: transform .32s ease;
 }
 
-.facility-card > div > span {
-    display: inline-flex;
-    align-items: center;
-    min-width: 34px;
-    justify-content: center;
-    padding: 6px 9px;
-    border: 1px solid rgba(255, 255, 255, .4);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, .12);
-    font-size: 11px;
-    backdrop-filter: blur(8px);
-}
-
 .facility-card h3 {
-    margin: 12px 0 7px;
+    margin: 0 0 7px;
     font-family: Gilroy, Arial, sans-serif;
     font-size: 26px;
 }
@@ -1893,7 +1915,7 @@ textarea:focus-visible {
 .contact-form-heading h2 {
     margin: 0 0 15px;
     color: var(--green);
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: Gilroy, Arial, sans-serif;
     font-size: clamp(32px, 4.2vw, 52px);
     font-weight: 600;
     line-height: 1.08;
@@ -1976,7 +1998,7 @@ textarea:focus-visible {
 .contact-aside-card h3 {
     margin: 0 0 7px;
     color: #173c2b;
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: Gilroy, Arial, sans-serif;
     font-size: 19px;
     line-height: 1.16;
 }
