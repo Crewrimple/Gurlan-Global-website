@@ -638,10 +638,9 @@ textarea:focus-visible {
 }
 
 .hero-video-button {
-    position: absolute;
+    position: relative;
     z-index: 3;
-    right: max(28px, calc((100% - var(--container)) / 2));
-    bottom: 52px;
+    margin-top: 28px;
     min-height: 60px;
     display: inline-flex;
     align-items: center;
@@ -1145,10 +1144,14 @@ textarea:focus-visible {
 
 .image-hero img {
     object-fit: cover;
-    object-position: center 35%;
+    object-position: center 28%;
 }
 
 .production-hero img {
+    animation: hero-slow-zoom 9s ease-out both;
+}
+
+.about-hero img {
     animation: hero-slow-zoom 9s ease-out both;
 }
 
@@ -2890,8 +2893,6 @@ textarea:focus-visible {
     }
 
     .hero-video-button {
-        right: 19px;
-        bottom: 58px;
         min-height: 54px;
         gap: 11px;
         padding-right: 16px;

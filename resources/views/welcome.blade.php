@@ -100,19 +100,15 @@
         <div class="hero-shade"></div>
         <div class="home-hero-copy">
             <h1>{{ $english ? 'GURLAN GLOBAL TEKS — FROM COTTON FIELDS TO READY-TO-WEAR FOR YOUR BRAND' : ($uzbek ? 'GURLAN GLOBAL TEKS — PAXTA DALASIDAN BRENDINGIZ UCHUN TAYYOR KIYIMGACHA' : 'GURLAN GLOBAL TEKS — ОТ ХЛОПКОВОГО ПОЛЯ ДО ГОТОВОЙ ОДЕЖДЫ ДЛЯ ВАШЕГО БРЕНДА') }}</h1>
-            <a class="video-link" href="{{ route('site.page', ['locale' => $locale, 'page' => 'production']) }}">
-                <span class="play-icon">▶</span>
-                <span>{{ $english ? 'Explore production' : ($uzbek ? 'Ishlab chiqarishni ko‘rish' : 'Посмотреть производство') }}</span>
-            </a>
+            <button class="hero-video-button" type="button" data-video-open aria-haspopup="dialog" aria-controls="home-video-dialog">
+                <span class="play-icon" aria-hidden="true">▶</span>
+                <span>{{ $english ? 'Watch video' : ($uzbek ? 'Videoni ko‘rish' : 'Посмотреть видео') }}</span>
+            </button>
         </div>
         <div class="hero-dots" aria-label="{{ $english ? 'Choose slide' : ($uzbek ? 'Slaydni tanlang' : 'Выбрать слайд') }}">
             <button type="button" class="is-active" data-hero-dot="0" aria-label="1"></button>
             <button type="button" data-hero-dot="1" aria-label="2"></button>
         </div>
-        <button class="hero-video-button" type="button" data-video-open aria-haspopup="dialog" aria-controls="home-video-dialog">
-            <span class="play-icon" aria-hidden="true">▶</span>
-            <span>{{ $english ? 'Watch video' : ($uzbek ? 'Videoni ko‘rish' : 'Посмотреть видео') }}</span>
-        </button>
     </section>
 
     <dialog class="video-dialog" id="home-video-dialog" data-video-dialog aria-labelledby="home-video-title">
