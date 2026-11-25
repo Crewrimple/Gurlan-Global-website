@@ -32,9 +32,9 @@
         $capacities = $uzbek
             ? [
                 ['+', '4 000', 'tonna', 'ip-kalava', 'Ishlab chiqariladigan mahsulot turlari'],
-                ['', '300', 'tonna Gacha', 'trikotaj mato', 'QATTIQ QOTISHMALAR: mashinasozlik, aviatsiya, kemasozlik va boshqa transport sohalari uchun quvurlar, sterjenlar va profillar'],
+                ['', '300', 'tonna gacha', 'trikotaj mato', 'QATTIQ QOTISHMALAR: mashinasozlik, aviatsiya, kemasozlik va boshqa transport sohalari uchun quvurlar, sterjenlar va profillar'],
                 ['+', '3 500', 'tonna', 'bo‘yalgan mato', 'YUMSHOQ QOTISHMALAR: qurilish, ko‘priksozlik va transport uchun buyurtmachi chizmalariga muvofiq standart profillar'],
-                ['', '9 000 000', 'Gacha', 'tayyor kiyim', 'Rossiya Federatsiyasi va xorijdagi buyurtmachilar uchun ishlab chiqariladi'],
+                ['', '9 000 000', 'gacha', 'tayyor kiyim', 'Rossiya Federatsiyasi va xorijdagi buyurtmachilar uchun ishlab chiqariladi'],
             ]
             : ($english
                 ? [
@@ -45,9 +45,9 @@
                 ]
                 : [
                 ['+', '4 000', 'тонн', 'пряжи', 'Номенклатура производимой продукции'],
-                ['', '300', 'тонн до', 'трикотажных полотен', 'HARD ALLOYS: трубы, прутки, профили для машиностроения, авиации, судостроения и других отраслей транспорта'],
+                ['до', '300', 'тонн', 'трикотажных полотен', 'HARD ALLOYS: трубы, прутки, профили для машиностроения, авиации, судостроения и других отраслей транспорта'],
                 ['+', '3 500', 'тонн', 'окрашенных тканей', 'SOFT ALLOYS: стандартный профиль по чертежам заказчика для строительства, мостостроения и транспорта'],
-                ['', '9 000 000', 'до', 'готовых изделий', 'Для заказчиков Российской Федерации и зарубежных стран'],
+                ['до', '9 000 000', '', 'готовых изделий', 'Для заказчиков Российской Федерации и зарубежных стран'],
                 ]);
         $workshops = $uzbek
             ? [
