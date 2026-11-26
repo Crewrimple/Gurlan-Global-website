@@ -14,6 +14,9 @@
             'about_history' => ['type' => 'Фото раздела', 'size' => 'Правая колонка', 'upload' => '1200 × 1000 px', 'ratio' => 'Около 6:5'],
             'about_sustainability' => ['type' => 'Фоновое фото', 'size' => 'На всю ширину', 'upload' => '1920 × 1080 px', 'ratio' => '16:9'],
             'production_capacity' => ['type' => 'Фото раздела', 'size' => 'Правая половина блока', 'upload' => '1200 × 900 px', 'ratio' => '4:3'],
+            'about_exhibition_1' => ['type' => 'Фото выставки', 'size' => 'Галерея 3 колонки', 'upload' => '1200 × 900 px', 'ratio' => '4:3'],
+            'about_exhibition_2' => ['type' => 'Фото выставки', 'size' => 'Галерея 3 колонки', 'upload' => '1200 × 900 px', 'ratio' => '4:3'],
+            'about_exhibition_3' => ['type' => 'Фото выставки', 'size' => 'Галерея 3 колонки', 'upload' => '1200 × 900 px', 'ratio' => '4:3'],
         ];
     @endphp
 

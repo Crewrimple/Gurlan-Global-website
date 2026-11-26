@@ -118,6 +118,10 @@ return [
             'team_heading' => ['label' => 'Команда — заголовок', 'values' => ['ru' => 'СИЛА КОМПАНИИ', 'en' => 'THE STRENGTH OF OUR COMPANY', 'uz' => 'KOMPANIYAMIZNING KUCHI']],
             'activities_heading' => ['label' => 'Направления — заголовок', 'values' => ['ru' => 'НАПРАВЛЕНИЯ ДЕЯТЕЛЬНОСТИ', 'en' => 'BUSINESS AREAS', 'uz' => 'FAOLIYAT YO‘NALISHLARI']],
             'sustainability_heading' => ['label' => 'Устойчивое развитие — заголовок', 'values' => ['ru' => 'УСТОЙЧИВОЕ РАЗВИТИЕ', 'en' => 'SUSTAINABLE DEVELOPMENT', 'uz' => 'BARQAROR RIVOJLANISH']],
+            'exhibitions_heading' => ['label' => 'Выставки — заголовок', 'values' => ['ru' => 'ВЫСТАВКИ', 'en' => 'EXHIBITIONS', 'uz' => 'KO‘RGAZMALAR']],
+            'exhibitions_tab_international' => ['label' => 'Выставки — международные', 'values' => ['ru' => 'Международные выставки', 'en' => 'International exhibitions', 'uz' => 'Xalqaro ko‘rgazmalar']],
+            'exhibitions_tab_industry' => ['label' => 'Выставки — отраслевые события', 'values' => ['ru' => 'Отраслевые мероприятия', 'en' => 'Industry events', 'uz' => 'Soha tadbirlari']],
+            'exhibitions_tab_forums' => ['label' => 'Выставки — форумы', 'values' => ['ru' => 'Форумы и бизнес-встречи', 'en' => 'Forums and business meetings', 'uz' => 'Forumlar va biznes uchrashuvlari']],
         ],
         'production' => [
             'page_heading' => ['label' => 'Заголовок страницы', 'values' => ['ru' => 'ПРОИЗВОДСТВО', 'en' => 'PRODUCTION', 'uz' => 'ISHLAB CHIQARISH']],
@@ -174,6 +178,9 @@ return [
         'home_why' => ['label' => 'Главная: фото «Почему мы»', 'path' => 'gurlan-assets/production/production_s2/DSC04180.jpg'],
         'about_history' => ['label' => 'О компании: фото истории', 'path' => 'gurlan-assets/about/about_s3/DSC04379.jpg'],
         'about_sustainability' => ['label' => 'О компании: фото устойчивого развития', 'path' => 'gurlan-assets/about/about_s6/abu.photographer-84-optimized.jpg'],
+        'about_exhibition_1' => ['label' => 'Выставки: фото 1', 'path' => 'gurlan-assets/about/about_s7/vistvka_0_0.jpg'],
+        'about_exhibition_2' => ['label' => 'Выставки: фото 2', 'path' => 'gurlan-assets/about/about_s7/vistvka_0_1.jpg'],
+        'about_exhibition_3' => ['label' => 'Выставки: фото 3', 'path' => 'gurlan-assets/about/about_s7/vistvka_0_2.jpg'],
         'production_capacity' => ['label' => 'Производство: фото мощностей', 'path' => 'gurlan-assets/production/production_s2/DSC04180.jpg'],
     ],
     'settings' => [

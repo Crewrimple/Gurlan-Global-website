@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\ContentBlock;
+use App\Models\MediaAsset;
+
 it('redirects the root URL to the default language', function () {
     $response = $this->get('/');
 
@@ -218,32 +221,32 @@ it('renders production facility photos without numbered badges', function () {
     $response = $this->get(route('site.page', ['locale' => 'ru', 'page' => 'production']));
 
     $response->assertOk()
-    ->assertSee('gurlan-assets/production/production_s1/DSC04440.jpg')
-    ->assertSee('gurlan-assets/production/production_s1/DSC04323.jpg')
-    ->assertSee('gurlan-assets/production/production_s1/kras.jpg')
-    ->assertSee('gurlan-assets/production/production_s1/DSC04173.jpg')
-    ->assertDontSee('<span>01</span>', false)
-    ->assertDontSee('<span>02</span>', false)
-    ->assertDontSee('<span>03</span>', false)
-    ->assertDontSee('<span>04</span>', false);
+        ->assertSee('gurlan-assets/production/production_s1/DSC04440.jpg')
+        ->assertSee('gurlan-assets/production/production_s1/DSC04323.jpg')
+        ->assertSee('gurlan-assets/production/production_s1/kras.jpg')
+        ->assertSee('gurlan-assets/production/production_s1/DSC04173.jpg')
+        ->assertDontSee('<span>01</span>', false)
+        ->assertDontSee('<span>02</span>', false)
+        ->assertDontSee('<span>03</span>', false)
+        ->assertDontSee('<span>04</span>', false);
 });
 
 it('uses optimized images for the home, about and production pages', function () {
     $this->get('/ru')
-    ->assertOk()
-    ->assertSee('gurlan-assets/home/home_header/DSC04130-optimized.jpg')
-    ->assertSee('fetchpriority="high"', false)
-    ->assertSee('fetchpriority="low"', false);
+        ->assertOk()
+        ->assertSee('gurlan-assets/home/home_header/DSC04130-optimized.jpg')
+        ->assertSee('fetchpriority="high"', false)
+        ->assertSee('fetchpriority="low"', false);
 
     $this->get('/ru/about')
-    ->assertOk()
-    ->assertSee('gurlan-assets/about/header/ggt-fasad.png')
-    ->assertSee('gurlan-assets/about/about_s6/abu.photographer-84-optimized.jpg');
+        ->assertOk()
+        ->assertSee('gurlan-assets/about/header/ggt-fasad.png')
+        ->assertSee('gurlan-assets/about/about_s6/abu.photographer-84-optimized.jpg');
 
     $this->get('/ru/production')
-    ->assertOk()
-    ->assertSee('gurlan-assets/production/production_header/DSC04130-optimized.jpg')
-    ->assertSee('gurlan-assets/production/production_s5/DSC01066-optimized.jpg');
+        ->assertOk()
+        ->assertSee('gurlan-assets/production/production_header/DSC04130-optimized.jpg')
+        ->assertSee('gurlan-assets/production/production_s5/DSC01066-optimized.jpg');
 });
 
 it('marks every production capacity value for count-up animation', function (string $locale, string $firstCapacity) {
@@ -291,4 +294,20 @@ it('shows the Gurlan Global Teks location on the contact map', function () {
         ->assertSee('marker=41.8263463%2C60.3761645', false)
         ->assertSee('destination=41.8263463%2C60.3761645', false)
         ->assertSee('Gurlan+Global+Teks/@41.8263463,60.3761645', false);
+});
+
+it('renders exhibition content from the CMS', function () {
+    ContentBlock::updateOrCreate(
+        ['page' => 'about', 'key' => 'exhibitions_heading', 'locale' => 'ru'],
+        ['label' => 'Выставки — заголовок', 'value' => 'НАШИ ВЫСТАВКИ'],
+    );
+    MediaAsset::updateOrCreate(
+        ['key' => 'about_exhibition_1'],
+        ['label' => 'Выставки: фото 1', 'file_path' => 'exhibitions/new-photo.webp'],
+    );
+
+    $this->get('/ru/about')
+        ->assertOk()
+        ->assertSee('НАШИ ВЫСТАВКИ')
+        ->assertSee('storage/exhibitions/new-photo.webp');
 });

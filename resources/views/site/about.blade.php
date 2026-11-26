@@ -153,17 +153,17 @@
     <section class="content-section exhibition-section">
         <div class="section-shell">
             <div class="section-heading">
-                <h2>{{ $english ? 'EXHIBITIONS' : ($uzbek ? 'KO‘RGAZMALAR' : 'ВЫСТАВКИ') }}</h2>
+                <h2>{{ $site->text($locale, 'about', 'exhibitions_heading') }}</h2>
             </div>
             <div class="exhibition-tabs" role="group" aria-label="{{ $english ? 'Exhibition categories' : ($uzbek ? 'Ko‘rgazma toifalari' : 'Категории выставок') }}">
-                <button type="button" class="is-active" aria-pressed="true">{{ $english ? 'International exhibitions' : ($uzbek ? 'Xalqaro ko‘rgazmalar' : 'Международные выставки') }}</button>
-                <button type="button" disabled>{{ $english ? 'Industry events' : ($uzbek ? 'Soha tadbirlari' : 'Отраслевые мероприятия') }}</button>
-                <button type="button" disabled>{{ $english ? 'Forums and business meetings' : ($uzbek ? 'Forumlar va biznes uchrashuvlari' : 'Форумы и бизнес-встречи') }}</button>
+                <button type="button" class="is-active" aria-pressed="true">{{ $site->text($locale, 'about', 'exhibitions_tab_international') }}</button>
+                <button type="button" disabled>{{ $site->text($locale, 'about', 'exhibitions_tab_industry') }}</button>
+                <button type="button" disabled>{{ $site->text($locale, 'about', 'exhibitions_tab_forums') }}</button>
             </div>
             <div class="exhibition-grid">
-                @foreach (['vistvka_0_0.jpg', 'vistvka_0_1.jpg', 'vistvka_0_2.jpg'] as $image)
+                @foreach (['about_exhibition_1', 'about_exhibition_2', 'about_exhibition_3'] as $mediaKey)
                     <div class="exhibition-photo">
-                        <img src="{{ asset('gurlan-assets/about/about_s7/'.$image) }}" alt="{{ $english ? 'International exhibition' : ($uzbek ? 'Xalqaro ko‘rgazma' : 'Международная выставка') }}" loading="lazy">
+                        <img src="{{ $site->media($mediaKey) }}" alt="{{ $site->text($locale, 'about', 'exhibitions_tab_international') }}" loading="lazy">
                     </div>
                 @endforeach
             </div>
