@@ -1,10 +1,6 @@
 @extends('layouts.site')
 
-@section('title', $locale === 'en'
-    ? 'Gurlan Global Teks — Full Cycle Textile Production'
-    : ($locale === 'uz'
-        ? 'Gurlan Global Teks — To‘liq siklli tekstil ishlab chiqarish'
-        : 'Gurlan Global Teks — текстильное производство полного цикла'))
+@section('title', $site->text($locale, 'common', 'home_title'))
 
 @section('content')
     @php
@@ -94,13 +90,13 @@
 
     <section class="home-hero" data-hero-slider>
         <div class="hero-slides">
-            <img class="hero-slide is-active" src="{{ asset('gurlan-assets/home/home_header/DSC04130-optimized.jpg') }}" alt="" fetchpriority="high" data-hero-slide>
-            <img class="hero-slide" src="{{ asset('gurlan-assets/home/home_header/DSC04173.jpg') }}" alt="" fetchpriority="low" data-hero-slide>
+            <img class="hero-slide is-active" src="{{ $site->media('home_hero_1') }}" alt="" fetchpriority="high" data-hero-slide>
+            <img class="hero-slide" src="{{ $site->media('home_hero_2') }}" alt="" fetchpriority="low" data-hero-slide>
         </div>
         <div class="hero-shade"></div>
         <div class="home-hero-copy">
-            <h1>{{ $english ? 'GURLAN GLOBAL TEKS — FROM COTTON FIELDS TO READY-TO-WEAR FOR YOUR BRAND' : ($uzbek ? 'GURLAN GLOBAL TEKS — PAXTA DALASIDAN BRENDINGIZ UCHUN TAYYOR KIYIMGACHA' : 'GURLAN GLOBAL TEKS — ОТ ХЛОПКОВОГО ПОЛЯ ДО ГОТОВОЙ ОДЕЖДЫ ДЛЯ ВАШЕГО БРЕНДА') }}</h1>
-            <button class="hero-video-button" type="button" data-video-open aria-haspopup="dialog" aria-controls="home-video-dialog">
+            <h1>{{ $site->text($locale, 'home', 'hero_title') }}</h1>
+            <button class="hero-video-button" type="button" data-video-open data-video-src="{{ $site->media('home_video') }}" aria-haspopup="dialog" aria-controls="home-video-dialog">
                 <span class="play-icon" aria-hidden="true">▶</span>
                 <span>{{ $english ? 'Watch video' : ($uzbek ? 'Videoni ko‘rish' : 'Посмотреть видео') }}</span>
             </button>
@@ -136,11 +132,11 @@
     <section class="content-section indicators-section">
         <div class="section-shell">
             <div class="section-heading centered">
-                <h2>{{ $english ? 'Key Indicators' : ($uzbek ? 'Asosiy ko‘rsatkichlar' : 'Ключевые показатели') }}</h2>
+                <h2>{{ $site->text($locale, 'home', 'indicators_heading') }}</h2>
             </div>
             <div class="indicator-intro">
-                <p>{{ $english ? 'Gurlan Global Teks is a modern textile cluster bringing together every stage of production, from growing our own cotton to manufacturing finished garments. We control each process to ensure clean raw materials, consistent color and transparent pricing without intermediaries.' : ($uzbek ? 'Gurlan Global Teks — o‘z paxtasini yetishtirishdan tayyor kiyim ishlab chiqarishgacha bo‘lgan barcha bosqichlarni birlashtirgan zamonaviy tekstil klasteri. Xomashyo sifati, rang barqarorligi va vositachilarsiz shaffof narxlarni ta’minlash uchun har bir jarayonni nazorat qilamiz.' : 'Gurlan Global Teks — современный текстильный кластер, объединяющий все этапы: от выращивания собственного хлопка до выпуска готовой одежды. Мы контролируем каждый процесс, гарантируя чистоту сырья, стабильность цвета и прозрачное ценообразование без посредников.') }}</p>
-                <p>{{ $english ? 'Our 6-million-garment annual capacity meets the demands of international retail. With modern technology and SEDEX, OEKO-TEX and ISO standards, we deliver quality products with social and environmental responsibility.' : ($uzbek ? 'Yiliga 6 million dona mahsulot ishlab chiqarish quvvatimiz xalqaro chakana savdo talablariga javob beradi. Zamonaviy texnologiyalar hamda SEDEX, OEKO-TEX va ISO standartlari sifat, ijtimoiy mas’uliyat va ekologik xavfsizlikni ta’minlaydi.' : 'Наша экосистема мощностью 6 млн изделий в год отвечает высоким требованиям международного ритейла. Сертификация SEDEX, OEKO-TEX и ISO подтверждает качество пошива, социальную и экологическую ответственность производства.') }}</p>
+                <p>{{ $site->text($locale, 'home', 'indicators_intro_1') }}</p>
+                <p>{{ $site->text($locale, 'home', 'indicators_intro_2') }}</p>
             </div>
             <div class="indicator-grid">
                 @foreach ($stats as $index => $stat)
@@ -156,8 +152,8 @@
     <section class="content-section products-section" id="catalog">
         <div class="section-shell">
             <div class="section-heading">
-                <h2>{{ $english ? 'Products' : ($uzbek ? 'Mahsulotlar' : 'Продукция') }}</h2>
-                <p>{{ $english ? 'High-quality textile products made through a vertically integrated production cluster. From cotton seed to final packaging, each step meets international standards.' : ($uzbek ? 'Vertikal integratsiyalashgan klasterda yuqori sifatli tekstil mahsulotlari ishlab chiqaramiz. Paxta urug‘idan tayyor kiyim qadoqlanishigacha bo‘lgan har bir bosqich xalqaro standartlarga mos.' : 'Высококачественная текстильная продукция в рамках вертикально-интегрированного кластера. Контроль на каждом этапе — от семени хлопка до упаковки готовой одежды — обеспечивает соответствие международным стандартам.') }}</p>
+                <h2>{{ $site->text($locale, 'home', 'products_heading') }}</h2>
+                <p>{{ $site->text($locale, 'home', 'products_intro') }}</p>
             </div>
             <div class="product-showcase">
                 @foreach ($products as $index => $product)
@@ -178,7 +174,7 @@
     <section class="content-section advantage-section">
         <div class="section-shell">
             <div class="section-heading">
-                <h2>{{ $english ? 'Advantages' : ($uzbek ? 'Afzalliklar' : 'Преимущества') }}</h2>
+                <h2>{{ $site->text($locale, 'home', 'advantages_heading') }}</h2>
                 <p>{{ $english ? 'Technology, experience and a strategic approach create a sustainable competitive advantage in the international market.' : ($uzbek ? 'Texnologiyalar, tajriba va strategik yondashuv xalqaro bozorda barqaror raqobat ustunligini yaratadi.' : 'Технологии, опыт и стратегический подход формируют устойчивое конкурентное преимущество на международном рынке.') }}</p>
             </div>
             <div class="advantage-list">
@@ -195,12 +191,12 @@
     <section class="why-section">
         <div class="why-copy">
             <p class="eyebrow">{{ $english ? 'WHY CHOOSE US' : ($uzbek ? 'NEGA BIZNI TANLASHADI' : 'ПОЧЕМУ ВЫБИРАЮТ НАС') }}</p>
-            <h2>{{ $english ? 'A dependable partner for your brand' : ($uzbek ? 'Brendingiz uchun ishonchli hamkor' : 'Надёжный партнёр для вашего бренда') }}</h2>
-            <p>{{ $whyUs }}</p>
+            <h2>{{ $site->text($locale, 'home', 'why_heading') }}</h2>
+            <p>{{ $site->text($locale, 'home', 'why_text') }}</p>
             <a class="solid-button" href="{{ route('site.page', ['locale' => $locale, 'page' => 'contact']) }}">{{ $english ? 'Contact us' : ($uzbek ? 'Biz bilan bog‘laning' : 'Связаться с нами') }} <span>↗</span></a>
         </div>
         <div class="why-image">
-            <img src="{{ asset('gurlan-assets/production/production_s2/DSC04180.jpg') }}" alt="" loading="lazy">
+            <img src="{{ $site->media('home_why') }}" alt="" loading="lazy">
         </div>
     </section>
 @endsection

@@ -1,28 +1,19 @@
 @extends('layouts.site')
 
-@section('title', $locale === 'en' ? 'Products - Gurlan Global Teks' : ($locale === 'uz' ? 'Mahsulotlar - Gurlan Global Teks' : 'Продукция - Gurlan Global Teks'))
+@section('title', $site->text($locale, 'common', 'products_title'))
 
 @section('content')
     @php
         $english = $locale === 'en';
         $uzbek = $locale === 'uz';
-        $uzumStoreUrl = 'https://uzum.uz/ru/shop/gurlanglobal';
-        $uzumShopLabel = $english ? 'Shop on the Uzum marketplace' : ($uzbek ? 'Uzum marketpleysida xarid qilish' : 'Купить на маркетплейсе Uzum');
-        $productGroups = [
-            'women' => range(1, 15),
-            'men' => range(1, 14),
-            'fabric' => range(1, 9),
-        ];
-        $fabricNames = $uzbek
-            ? ['2 ipli mato', '3 ipli mato', 'Kulirka', 'Velur', 'Interlok', 'Kashkorse', 'Mahra', 'Pike', 'Suprem']
-            : ($english
-                ? ['2-thread fabric', '3-thread fabric', 'Single jersey', 'Velour', 'Interlock', 'Rib knit', 'Terry', 'Piqué', 'Suprem knit']
-                : ['2 нитка', '3 нитка', 'Кулирка', 'Велюр', 'Интерлок', 'Кашкорсе', 'Махра', 'Пике', 'Супрем']);
+        $uzumStoreUrl = $site->setting('uzum');
+        $uzumShopLabel = $site->text($locale, 'products', 'store_label');
+        $productGroups = ['women', 'men', 'fabric'];
     @endphp
 
     <section class="catalog-section">
         <div class="catalog-heading">
-            <h1>{{ $english ? 'PRODUCT RANGE' : ($uzbek ? 'MAHSULOTLAR ASSORTIMENTI' : 'АССОРТИМЕНТ ПРОДУКЦИИ') }}</h1>
+            <h1>{{ $site->text($locale, 'products', 'page_heading') }}</h1>
             <div class="catalog-tabs" role="tablist" aria-label="{{ $english ? 'Product categories' : ($uzbek ? 'Mahsulot toifalari' : 'Категории продукции') }}">
                 <button type="button" class="is-active" role="tab" aria-selected="true" data-product-category="women">{{ $english ? 'Women' : ($uzbek ? 'Ayollar' : 'Женская') }}</button>
                 <button type="button" role="tab" aria-selected="false" data-product-category="men">{{ $english ? 'Men' : ($uzbek ? 'Erkaklar' : 'Мужская') }}</button>
@@ -38,17 +29,27 @@
             </a>
         </div>
 
-        @foreach ($productGroups as $category => $items)
+        @foreach ($productGroups as $category)
+            @php($items = $cmsProducts->where('category', $category))
             <div class="catalog-grid" data-product-gallery="{{ $category }}" @if ($category !== 'women') hidden @endif>
-                @foreach ($items as $index)
-                    @php
-                        $itemName = $category === 'fabric' ? $fabricNames[$index - 1] : null;
-                    @endphp
-                    <button class="catalog-item" type="button" data-catalog-image="{{ asset('gurlan-assets/products/'.$category.'/'.$index.'.jpg') }}" aria-label="{{ $itemName ? ($english ? 'Fabric: ' : ($uzbek ? 'Mato: ' : 'Полотно: ')).$itemName : ($english ? 'View product ' : ($uzbek ? 'Mahsulotni ko‘rish ' : 'Посмотреть изделие ')).$index }}">
-                        <img src="{{ asset('gurlan-assets/products/'.$category.'/'.$index.'.jpg') }}" alt="{{ $itemName ?? '' }}" loading="{{ $index <= 5 ? 'eager' : 'lazy' }}">
-                        <span>{{ $itemName ?? str_pad((string) $index, 2, '0', STR_PAD_LEFT).' / '.str_pad((string) count($items), 2, '0', STR_PAD_LEFT) }}</span>
+                @forelse ($items as $product)
+                    @php($imageUrl = str_starts_with($product->image_path, 'gurlan-assets/') ? asset($product->image_path) : asset('storage/'.$product->image_path))
+                    <button class="catalog-item" type="button" data-catalog-image="{{ $imageUrl }}" aria-label="{{ $product->localized($locale, 'name') }}">
+                        <img src="{{ $imageUrl }}" alt="{{ $product->localized($locale, 'name') }}" loading="{{ $loop->iteration <= 5 ? 'eager' : 'lazy' }}">
+                        <span class="catalog-item-caption">
+                            <strong>{{ $product->localized($locale, 'name') }}</strong>
+                            @if ($product->localized($locale, 'description'))
+                                <small>{{ $product->localized($locale, 'description') }}</small>
+                            @endif
+                            <b>{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }} / {{ str_pad((string) count($items), 2, '0', STR_PAD_LEFT) }}</b>
+                        </span>
                     </button>
-                @endforeach
+                @empty
+                    <div class="catalog-empty">
+                        <span aria-hidden="true">◇</span>
+                        <p>{{ $english ? 'No products in this category yet.' : ($uzbek ? 'Bu toifada hali mahsulot yo‘q.' : 'В этой категории пока нет продукции.') }}</p>
+                    </div>
+                @endforelse
             </div>
         @endforeach
     </section>

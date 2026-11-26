@@ -1,6 +1,6 @@
 @extends('layouts.site')
 
-@section('title', $locale === 'en' ? 'Production - Gurlan Global Teks' : ($locale === 'uz' ? 'Ishlab chiqarish - Gurlan Global Teks' : 'Производство - Gurlan Global Teks'))
+@section('title', $site->text($locale, 'common', 'production_title'))
 
 @section('content')
     @php
@@ -78,16 +78,16 @@
     @endphp
 
     <section class="page-hero image-hero production-hero">
-        <img src="{{ asset('gurlan-assets/production/production_header/DSC04130-optimized.jpg') }}" alt="" fetchpriority="high">
+        <img src="{{ $site->media('production_hero') }}" alt="" fetchpriority="high">
         <div class="page-hero-shade"></div>
-        <h1>{{ $english ? 'PRODUCTION' : ($uzbek ? 'ISHLAB CHIQARISH' : 'ПРОИЗВОДСТВО') }}</h1>
+        <h1>{{ $site->text($locale, 'production', 'page_heading') }}</h1>
     </section>
 
     <section class="content-section production-complex">
         <div class="section-shell">
             <div class="section-heading">
-                <h2>{{ $english ? 'PRODUCTION COMPLEX' : ($uzbek ? 'ISHLAB CHIQARISH MAJMUASI' : 'ПРОИЗВОДСТВЕННЫЙ КОМПЛЕКС') }}</h2>
-                <p>{{ $english ? 'Gurlan Global Teks integrates every stage of the textile cycle, from cotton processing to finished garments. Advanced technologies and quality control at each stage ensure stability, efficiency and compliance with international standards.' : ($uzbek ? 'Gurlan Global Teks paxtani qayta ishlashdan tayyor kiyim ishlab chiqarishgacha bo‘lgan tekstil jarayonining barcha bosqichlarini birlashtiradi. Zamonaviy texnologiyalar va har bir bosqichdagi sifat nazorati barqarorlik, samaradorlik hamda xalqaro standartlarga muvofiqlikni ta’minlaydi.' : 'Современная производственная структура Gurlan Global Teks объединяет все этапы текстильного цикла — от переработки хлопка до выпуска готовой продукции. Интеграция процессов, передовые технологии и контроль качества на каждом этапе обеспечивают стабильность, эффективность и соответствие международным стандартам.') }}</p>
+                <h2>{{ $site->text($locale, 'production', 'complex_heading') }}</h2>
+                <p>{{ $site->text($locale, 'production', 'complex_intro') }}</p>
                 <a class="text-button" href="#workshops">{{ $english ? 'Our products' : ($uzbek ? 'Mahsulotlarimiz' : 'Наша продукция') }} <span>↘</span></a>
             </div>
             <div class="facility-grid">
@@ -107,16 +107,16 @@
     <section class="capacity-feature">
         <div class="capacity-feature-copy">
             <p class="eyebrow">GURLAN GLOBAL TEKS</p>
-            <h2>{{ $english ? 'PRODUCTION CAPACITIES OF GURLAN GLOBAL TEKS' : ($uzbek ? 'GURLAN GLOBAL TEKS ISHLAB CHIQARISH QUVVATLARI' : 'ПРОИЗВОДСТВЕННЫЕ МОЩНОСТИ GURLAN GLOBAL TEKS') }}</h2>
+            <h2>{{ $site->text($locale, 'production', 'capacity_heading') }}</h2>
             <p>{{ $english ? 'The company’s total production capacity supports a full-cycle textile process, from yarn to finished garments. Each year, the enterprise produces thousands of tons of products that meet international quality standards.' : ($uzbek ? 'Kompaniyaning umumiy quvvati ip-kalavadan tayyor kiyimgacha bo‘lgan to‘liq tekstil ishlab chiqarish siklini ta’minlaydi. Korxonada har yili xalqaro sifat standartlariga javob beradigan minglab tonna mahsulot ishlab chiqariladi.' : 'Суммарные производственные мощности компании обеспечивают полный цикл текстильного производства — от пряжи до готовой продукции. Ежегодно предприятие выпускает тысячи тонн продукции, включая пряжу, ткани и готовые изделия, соответствующие международным стандартам качества.') }}</p>
         </div>
-        <img src="{{ asset('gurlan-assets/production/production_s2/DSC04180.jpg') }}" alt="{{ $english ? 'Textile factory' : ($uzbek ? 'Tekstil ishlab chiqarish' : 'Текстильное производство') }}" loading="lazy">
+        <img src="{{ $site->media('production_capacity') }}" alt="{{ $english ? 'Textile factory' : ($uzbek ? 'Tekstil ishlab chiqarish' : 'Текстильное производство') }}" loading="lazy">
     </section>
 
     <section class="content-section capacity-section">
         <div class="section-shell">
             <div class="section-heading">
-                <h2>{{ $english ? 'ANNUALLY, THE COMPANY PRODUCES' : ($uzbek ? 'KOMPANIYA YILIGA ISHLAB CHIQARADI' : 'ЕЖЕГОДНО КОМПАНИЯ ПРОИЗВОДИТ') }}</h2>
+                <h2>{{ $site->text($locale, 'production', 'annual_heading') }}</h2>
                 <p>{{ $english ? 'Modern technology and production scale enable stable supplies to international markets.' : ($uzbek ? 'Zamonaviy texnologiyalar va ishlab chiqarish ko‘lami xalqaro bozorlarga barqaror yetkazib berish imkonini beradi.' : 'Современные технологии и масштаб производства позволяют обеспечивать стабильные поставки на международные рынки.') }}</p>
             </div>
             <div class="capacity-grid">
@@ -139,7 +139,7 @@
         <div class="section-shell certification-layout">
             <div class="section-heading">
                 <p class="eyebrow">{{ $english ? 'OUR STANDARDS' : ($uzbek ? 'BIZNING STANDARTLAR' : 'НАШИ СТАНДАРТЫ') }}</p>
-                <h2>{{ $english ? 'CERTIFICATION AND QUALITY' : ($uzbek ? 'SERTIFIKATSIYA VA SIFAT' : 'СЕРТИФИКАЦИЯ И КАЧЕСТВО') }}</h2>
+                <h2>{{ $site->text($locale, 'production', 'quality_heading') }}</h2>
                 <p>{{ $english ? 'Modern technologies, quality control at every stage and responsible resource management allow us to offer competitive products for the global market.' : ($uzbek ? 'Zamonaviy texnologiyalar, barcha bosqichlarda sifat nazorati va resurslardan mas’uliyatli foydalanish jahon bozoriga raqobatbardosh mahsulot taklif qilish imkonini beradi.' : 'Современные технологии, контроль качества на всех этапах производства и ответственное отношение к ресурсам позволяют выпускать конкурентоспособную продукцию для глобального рынка.') }}</p>
                 <p>{{ $english ? 'Transparency, environmental responsibility and continuous process improvement guide our work with international partners.' : ($uzbek ? 'Xalqaro hamkorlar bilan ishimiz shaffoflik, ekologik mas’uliyat va jarayonlarni uzluksiz takomillashtirish tamoyillariga asoslanadi.' : 'Наша деятельность основана на принципах прозрачности, экологической ответственности и постоянного совершенствования процессов.') }}</p>
             </div>
@@ -159,7 +159,7 @@
     <section class="content-section workshops-section" id="workshops">
         <div class="section-shell">
             <div class="section-heading">
-                <h2>{{ $english ? 'MODERN FULL-CYCLE TEXTILE PRODUCTION' : ($uzbek ? 'ZAMONAVIY TO‘LIQ SIKLLI TEKSTIL ISHLAB CHIQARISH' : 'СОВРЕМЕННОЕ ТЕКСТИЛЬНОЕ ПРОИЗВОДСТВО ПОЛНОГО ЦИКЛА') }}</h2>
+                <h2>{{ $site->text($locale, 'production', 'workshops_heading') }}</h2>
             </div>
             <div class="workshop-grid">
                 @foreach ($workshops as $workshop)

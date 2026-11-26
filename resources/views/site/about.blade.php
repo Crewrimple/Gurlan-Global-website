@@ -1,6 +1,6 @@
 @extends('layouts.site')
 
-@section('title', $locale === 'en' ? 'About Company - Gurlan Global Teks' : ($locale === 'uz' ? 'Kompaniya haqida - Gurlan Global Teks' : 'О компании - Gurlan Global Teks'))
+@section('title', $site->text($locale, 'common', 'about_title'))
 
 @section('content')
     @php
@@ -69,16 +69,16 @@
     @endphp
 
     <section class="page-hero image-hero about-hero">
-        <img src="{{ asset('gurlan-assets/about/header/ggt-fasad.png') }}" alt="" fetchpriority="high">
+        <img src="{{ $site->media('about_hero') }}" alt="" fetchpriority="high">
         <div class="page-hero-shade"></div>
-        <h1>{{ $english ? 'ABOUT COMPANY' : ($uzbek ? 'KOMPANIYA HAQIDA' : 'О КОМПАНИИ') }}</h1>
+        <h1>{{ $site->text($locale, 'about', 'page_heading') }}</h1>
     </section>
 
     <section class="content-section values-section">
         <div class="section-shell">
             <div class="section-heading centered">
-                <h2>{{ $english ? 'STRATEGY AND VALUES' : ($uzbek ? 'STRATEGIYA VA QADRIYATLAR' : 'СТРАТЕГИЯ И ЦЕННОСТИ') }}</h2>
-                <p>{{ $english ? 'A systematic approach to development where technology, responsibility and international standards form the foundation of everything we do.' : ($uzbek ? 'Texnologiyalar, mas’uliyat va xalqaro standartlarga asoslangan tizimli rivojlanish yondashuvi kompaniyamiz faoliyatining poydevoridir.' : 'Системный подход к развитию, где технологии, ответственность и международные стандарты формируют основу деятельности компании.') }}</p>
+                <h2>{{ $site->text($locale, 'about', 'values_heading') }}</h2>
+                <p>{{ $site->text($locale, 'about', 'values_intro') }}</p>
             </div>
             <div class="values-list">
                 @foreach ($values as $value)
@@ -97,36 +97,26 @@
         <div class="section-shell history-layout">
             <div class="history-copy">
                 <p class="eyebrow">{{ $english ? 'OUR JOURNEY' : ($uzbek ? 'BIZNING YO‘LIMIZ' : 'НАШ ПУТЬ') }}</p>
-                <h2>{{ $english ? 'DEVELOPMENT HISTORY' : ($uzbek ? 'RIVOJLANISH TARIXI' : 'ИСТОРИЯ РАЗВИТИЯ') }}</h2>
+                <h2>{{ $site->text($locale, 'about', 'history_heading') }}</h2>
                 <h3>2020 — {{ $english ? 'present' : ($uzbek ? 'hozirgi kungacha' : 'настоящее время') }}</h3>
-                @if ($english)
-                    <p>Founded in 2020 in the Khorezm region, Gurlan Global Teks set out to build a modern full-cycle textile ecosystem.</p>
-                    <p>By bringing every stage of production together, introducing new technologies and developing exports, the company quickly established a strong market position.</p>
-                    <p>Today, Gurlan Global Teks is a rapidly developing industrial cluster focused on quality, innovation and international cooperation.</p>
-                @elseif ($uzbek)
-                    <p>Gurlan Global Teks 2020-yilda Xorazm viloyatida tashkil etilgan bo‘lib, boshidanoq to‘liq siklli zamonaviy tekstil ekotizimini yaratishni maqsad qilgan.</p>
-                    <p>Ishlab chiqarishning barcha bosqichlarini birlashtirish, yangi texnologiyalarni joriy etish va eksportni rivojlantirish kompaniyaning qisqa muddatda bozorda mustahkam o‘rin egallashiga yordam berdi.</p>
-                    <p>Bugun Gurlan Global Teks — sifat, innovatsiya va xalqaro hamkorlikka e’tibor qaratayotgan jadal rivojlanayotgan sanoat klasteri.</p>
-                @else
-                    <p>Основанная в 2020 году в Хорезмской области, Gurlan Global Teks с самого начала ориентировалась на создание современной текстильной экосистемы полного цикла.</p>
-                    <p>Объединение всех этапов производства, внедрение технологий и развитие экспортных направлений позволили компании в короткие сроки занять устойчивые позиции на рынке.</p>
-                    <p>Сегодня Gurlan Global Teks — динамично развивающийся промышленный кластер с фокусом на качество, инновации и международное сотрудничество.</p>
-                @endif
+                <p>{{ $site->text($locale, 'about', 'history_1') }}</p>
+                <p>{{ $site->text($locale, 'about', 'history_2') }}</p>
+                <p>{{ $site->text($locale, 'about', 'history_3') }}</p>
             </div>
-            <img class="history-image" src="{{ asset('gurlan-assets/about/about_s3/DSC04379.jpg') }}" alt="{{ $english ? 'Company history' : ($uzbek ? 'Kompaniyaning rivojlanish tarixi' : 'История развития') }}" loading="lazy">
+            <img class="history-image" src="{{ $site->media('about_history') }}" alt="{{ $english ? 'Company history' : ($uzbek ? 'Kompaniyaning rivojlanish tarixi' : 'История развития') }}" loading="lazy">
         </div>
     </section>
 
     <section class="content-section team-section">
         <div class="section-shell">
             <div class="section-heading">
-                <h2>{{ $english ? 'THE STRENGTH OF OUR COMPANY' : ($uzbek ? 'KOMPANIYAMIZNING KUCHI' : 'СИЛА КОМПАНИИ') }}</h2>
+                <h2>{{ $site->text($locale, 'about', 'team_heading') }}</h2>
             </div>
             <div class="team-grid">
-                @foreach ($team as $member)
+                @foreach ($cmsTeam as $member)
                     <article class="team-card">
-                        <img src="{{ asset('gurlan-assets/'.$member[2]) }}" alt="{{ $member[0] }}" loading="lazy">
-                        <div><h3>{{ $member[0] }}</h3><p>{{ $member[1] }}</p></div>
+                        <img src="{{ str_starts_with($member->image_path, 'gurlan-assets/') ? asset($member->image_path) : asset('storage/'.$member->image_path) }}" alt="{{ $member->localized($locale, 'name') }}" loading="lazy">
+                        <div><h3>{{ $member->localized($locale, 'name') }}</h3><p>{{ $member->localized($locale, 'position') }}</p></div>
                     </article>
                 @endforeach
             </div>
@@ -136,7 +126,7 @@
     <section class="content-section activity-section">
         <div class="section-shell">
             <div class="section-heading">
-                <h2>{{ $english ? 'BUSINESS AREAS' : ($uzbek ? 'FAOLIYAT YO‘NALISHLARI' : 'НАПРАВЛЕНИЯ ДЕЯТЕЛЬНОСТИ') }}</h2>
+                <h2>{{ $site->text($locale, 'about', 'activities_heading') }}</h2>
                 <p>{{ $english ? 'Gurlan Global Teks is an integrated textile company bringing every key production stage together — from raw materials to finished products.' : ($uzbek ? 'Gurlan Global Teks — xomashyodan tayyor mahsulotgacha bo‘lgan asosiy ishlab chiqarish bosqichlarini birlashtirgan integratsiyalashgan tekstil kompaniyasi.' : 'Gurlan Global Teks — интегрированная текстильная компания, объединяющая ключевые этапы производства в единую систему — от сырья до готовой продукции.') }}</p>
             </div>
             <div class="activity-grid">
@@ -151,10 +141,10 @@
     </section>
 
     <section class="sustainability-section">
-        <img src="{{ asset('gurlan-assets/about/about_s6/abu.photographer-84-optimized.jpg') }}" alt="" loading="lazy">
+        <img src="{{ $site->media('about_sustainability') }}" alt="" loading="lazy">
         <div class="sustainability-copy">
             <p class="eyebrow">{{ $english ? 'RESPONSIBLE PRODUCTION' : ($uzbek ? 'MAS’ULIYATLI ISHLAB CHIQARISH' : 'ОТВЕТСТВЕННОЕ ПРОИЗВОДСТВО') }}</p>
-            <h2>{{ $english ? 'SUSTAINABLE DEVELOPMENT' : ($uzbek ? 'BARQAROR RIVOJLANISH' : 'УСТОЙЧИВОЕ РАЗВИТИЕ') }}</h2>
+            <h2>{{ $site->text($locale, 'about', 'sustainability_heading') }}</h2>
             <p>{{ $english ? 'Vertical integration protects your business from raw-material shortages and price fluctuations. We guarantee transparent production and consistent quality, supported by OEKO-TEX and SEDEX standards.' : ($uzbek ? 'Vertikal integratsiya biznesingizni xomashyo tanqisligi va narxlar o‘zgarishidan himoya qiladi. OEKO-TEX va SEDEX standartlari bilan tasdiqlangan shaffof ishlab chiqarish va barqaror sifatni kafolatlaymiz.' : 'Вертикальная интеграция Gurlan Global Teks защищает ваш бизнес от дефицита сырья и скачков цен. Мы гарантируем прозрачность производства и стабильное качество, подтверждённое международными сертификатами OEKO-TEX и SEDEX.') }}</p>
             <a href="{{ route('site.page', ['locale' => $locale, 'page' => 'production']) }}">{{ $english ? 'Learn more' : ($uzbek ? 'Batafsil' : 'Подробнее') }} <span>↗</span></a>
         </div>

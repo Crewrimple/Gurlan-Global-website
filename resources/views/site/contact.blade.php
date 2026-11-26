@@ -1,6 +1,6 @@
 @extends('layouts.site')
 
-@section('title', $locale === 'en' ? 'Contacts - Gurlan Global Teks' : ($locale === 'uz' ? 'Aloqa - Gurlan Global Teks' : 'Контакты - Gurlan Global Teks'))
+@section('title', $site->text($locale, 'common', 'contact_title'))
 
 @section('content')
     @php
@@ -12,29 +12,29 @@
         <div class="section-shell">
             <div class="contact-intro">
                 <p class="eyebrow">{{ $english ? 'CONTACTS' : ($uzbek ? 'ALOQA' : 'КОНТАКТЫ') }}</p>
-                <h1>{{ $english ? "WE'RE HERE TO HELP" : ($uzbek ? 'SIZGA YORDAM BERISHGA TAYYORMIZ' : 'МЫ ЗДЕСЬ, ЧТОБЫ ПОМОЧЬ') }}</h1>
+                <h1>{{ $site->text($locale, 'contact', 'page_heading') }}</h1>
             </div>
 
             <div class="contact-methods">
                 <article>
                     <h2>{{ $uzbek ? 'Elektron pochta' : 'Email' }}</h2>
-                    <a href="mailto:gurlanglobal@gmail.com">gurlanglobal@gmail.com</a>
+                    <a href="mailto:{{ $site->setting('email') }}">{{ $site->setting('email') }}</a>
                 </article>
                 <article>
                     <h2>{{ $english ? 'Phone' : ($uzbek ? 'Telefon' : 'Телефон') }}</h2>
-                    <a href="tel:+998919858707">+998 91 985 87 07</a>
+                    <a href="tel:{{ $site->setting('phone') }}">{{ $site->setting('phone') }}</a>
                 </article>
                 <article>
                     <h2>Telegram</h2>
-                    <a href="https://t.me/ggt_inc" target="_blank" rel="noopener noreferrer">@ggt_inc</a>
+                    <a href="{{ $site->setting('telegram') }}" target="_blank" rel="noopener noreferrer">{{ $site->setting('telegram') }}</a>
                 </article>
                 <article>
                     <h2>WhatsApp</h2>
-                    <a href="https://wa.me/998919858707" target="_blank" rel="noopener noreferrer">+998 91 985 87 07</a>
+                    <a href="{{ $site->setting('whatsapp') }}" target="_blank" rel="noopener noreferrer">{{ $site->setting('phone') }}</a>
                 </article>
                 <article>
                     <h2>Instagram</h2>
-                    <a href="https://www.instagram.com/ggt_textile/" target="_blank" rel="noopener noreferrer">@ggt_textile</a>
+                    <a href="{{ $site->setting('instagram') }}" target="_blank" rel="noopener noreferrer">{{ $site->setting('instagram') }}</a>
                 </article>
             </div>
 
@@ -43,16 +43,16 @@
                 <div class="contact-map">
                     <iframe
                         title="{{ $english ? 'Map to Gurlan Global Teks' : ($uzbek ? 'Gurlan Global Teks manzili xaritada' : 'Карта проезда к Gurlan Global Teks') }}"
-                        src="https://www.openstreetmap.org/export/embed.html?bbox=60.311165%2C41.781346%2C60.441165%2C41.871346&amp;layer=mapnik&amp;marker=41.8263463%2C60.3761645"
+                        src="{{ $site->setting('map_embed') }}"
                         loading="lazy"
                         referrerpolicy="no-referrer"
                     ></iframe>
                     <div class="map-caption">
                         <div>
                             <strong>Gurlan Global Teks</strong>
-                            <p>{{ $english ? 'Mustaqillik Street, 5, Gurlan District, Khorezm Region, Uzbekistan' : ($uzbek ? 'Mustaqillik ko‘chasi, 5, Gurlan tumani, Xorazm viloyati, O‘zbekiston' : 'ул. Мустакиллик, 5, Гурленский район, Хорезмская область, Узбекистан') }}</p>
+                            <p>{{ $site->text($locale, 'contact', 'map_address') }}</p>
                         </div>
-                        <a class="map-route" href="https://www.google.com/maps/dir/?api=1&amp;destination=41.8263463%2C60.3761645" target="_blank" rel="noopener noreferrer">
+                        <a class="map-route" href="{{ $site->setting('map_directions') }}" target="_blank" rel="noopener noreferrer">
                             <img src="{{ asset('gurlan-assets/map-route-qr.png') }}" alt="" width="80" height="80">
                             {{ $english ? 'GET DIRECTIONS' : ($uzbek ? 'YO‘NALISHNI KO‘RISH' : 'ПРОЛОЖИТЬ МАРШРУТ') }} ↗
                         </a>
@@ -63,8 +63,8 @@
             <section class="contact-form-section">
                 <div class="contact-form-heading">
                     <p class="eyebrow">{{ $english ? 'REQUEST / 01' : ($uzbek ? 'SO‘ROV / 01' : 'ЗАЯВКА / 01') }}</p>
-                    <h2>{{ $english ? 'Contact us' : ($uzbek ? 'Biz bilan bog‘laning' : 'Свяжитесь с нами') }}</h2>
-                    <p>{{ $english ? 'Share a few details about your project and the products you need.' : ($uzbek ? 'Loyihangiz va sizga kerakli mahsulotlar haqida qisqacha ma’lumot bering.' : 'Расскажите о проекте и пожеланиях — форма подготовит письмо с нужной информацией.') }}</p>
+                    <h2>{{ $site->text($locale, 'contact', 'form_heading') }}</h2>
+                    <p>{{ $site->text($locale, 'contact', 'form_intro') }}</p>
                 </div>
 
                 <div class="contact-form-showcase">
@@ -74,23 +74,50 @@
                             <span class="contact-form-card-mark" aria-hidden="true">↗</span>
                         </div>
 
-                        <form class="contact-form" data-contact-form data-contact-email="gurlanglobal@gmail.com">
+                        @if (session('status'))
+                            <div class="contact-success" role="status">
+                                <span aria-hidden="true">✓</span>
+                                <div>
+                                    <strong>{{ $english ? 'Request received' : ($uzbek ? 'So‘rov qabul qilindi' : 'Ваша заявка отправлена') }}</strong>
+                                    <p>{{ session('status') }}</p>
+                                </div>
+                            </div>
+                        @endif
+                        @if ($errors->any())
+                            <p class="form-message form-error" role="alert">{{ $errors->first() }}</p>
+                        @endif
+                        <form class="contact-form" method="POST" action="{{ route('site.contact.store', ['locale' => $locale]) }}" data-contact-form>
+                            @csrf
+                            <input type="text" name="website" value="" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px">
                             <div class="contact-fields">
                                 <label>
                                     <span>{{ $english ? '[ Company / contact person ]*' : ($uzbek ? '[ Kompaniya / mas’ul shaxs ]*' : '[ Компания / контактное лицо ]*') }}</span>
-                                    <input type="text" name="name" autocomplete="name" placeholder="{{ $english ? 'Company or contact name' : ($uzbek ? 'Kompaniya yoki mas’ul shaxs nomi' : 'Название компании или имя') }}" required>
+                                    <input type="text" name="name" value="{{ old('name') }}" autocomplete="name" placeholder="{{ $english ? 'Company or contact name' : ($uzbek ? 'Kompaniya yoki mas’ul shaxs nomi' : 'Название компании или имя') }}" required>
                                 </label>
                                 <label>
                                     <span>{{ $uzbek ? '[ Elektron pochta ]*' : '[ E-mail ]*' }}</span>
-                                    <input type="email" name="email" autocomplete="email" placeholder="name@company.com" required>
+                                    <input type="email" name="email" value="{{ old('email') }}" autocomplete="email" placeholder="name@company.com" required>
                                 </label>
                                 <label>
                                     <span>{{ $english ? '[ Phone ]*' : ($uzbek ? '[ Telefon ]*' : '[ Телефон ]*') }}</span>
-                                    <input type="tel" name="phone" autocomplete="tel" placeholder="+998" required>
+                                    <div class="phone-country-input">
+                                        <select name="country" aria-label="{{ $english ? 'Country' : ($uzbek ? 'Mamlakat' : 'Страна') }}" required>
+                                            @foreach (config('countries') as $code => $country)
+                                                @php
+                                                    $flag = implode('', array_map(
+                                                        fn (string $letter): string => mb_chr(ord($letter) - 65 + 127462),
+                                                        str_split($code),
+                                                    ));
+                                                @endphp
+                                                <option value="{{ $code }}" @selected(old('country', 'UZ') === $code)>{{ $flag }} {{ $country['name'] }} {{ $country['dial'] }}</option>
+                                            @endforeach
+                                        </select>
+                                        <input type="tel" name="phone" value="{{ old('phone') }}" autocomplete="tel-national" inputmode="tel" placeholder="90 123 45 67" required>
+                                    </div>
                                 </label>
                                 <label class="message-field">
                                     <span>{{ $english ? '[ Product, volume and timeline ]*' : ($uzbek ? '[ Mahsulot, hajm va muddatlar ]*' : '[ Продукция, объём и сроки ]*') }}</span>
-                                    <textarea name="message" rows="4" placeholder="{{ $english ? 'Tell us what you are looking for' : ($uzbek ? 'Sizni qaysi mahsulot qiziqtirayotganini yozing' : 'Расскажите, какая продукция вас интересует') }}" required></textarea>
+                                    <textarea name="message" rows="4" placeholder="{{ $english ? 'Tell us what you are looking for' : ($uzbek ? 'Sizni qaysi mahsulot qiziqtirayotganini yozing' : 'Расскажите, какая продукция вас интересует') }}" required>{{ old('message') }}</textarea>
                                 </label>
                             </div>
                             <label class="consent-row">
@@ -140,7 +167,7 @@
                             <span class="contact-aside-kicker">{{ $english ? '03 / NEXT STEP' : ($uzbek ? '03 / KEYINGI QADAM' : '03 / ПОСЛЕ ОТПРАВКИ') }}</span>
                             <div>
                                 <h3>{{ $english ? 'A clear next step' : ($uzbek ? 'Keyingi qadam aniq' : 'Понятное подтверждение') }}</h3>
-                                <p>{{ $english ? 'After captcha verification, your e-mail app opens with a prepared message. Send it to reach our team.' : ($uzbek ? 'Tekshiruvdan so‘ng tayyor xabar bilan elektron pochta ilovasi ochiladi. So‘rovingizni yuborish uchun xatni jo‘nating.' : 'После проверки капчи откроется почтовое приложение с подготовленным письмом. Нажмите «Отправить», чтобы передать запрос.') }}</p>
+                                <p>{{ $english ? 'After verification, your request is securely saved and sent to our team. A manager will contact you.' : ($uzbek ? 'Tekshiruvdan so‘ng so‘rovingiz xavfsiz saqlanadi va jamoamizga yuboriladi. Menejer siz bilan bog‘lanadi.' : 'После проверки заявка безопасно сохраняется и поступает нашей команде. Менеджер свяжется с вами.') }}</p>
                             </div>
                         </article>
                     </div>

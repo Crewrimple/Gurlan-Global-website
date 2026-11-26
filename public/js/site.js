@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         videoOpenButton.addEventListener('click', () => {
-            videoFrame.src = 'https://www.youtube-nocookie.com/embed/8KVSG1LZ_O0?autoplay=1&rel=0';
+            videoFrame.src = videoOpenButton.dataset.videoSrc || 'about:blank';
             videoDialog.showModal();
         });
 
@@ -348,34 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            const formData = new FormData(contactForm);
-            const isUzbek = document.documentElement.lang === 'uz';
-            const subject = encodeURIComponent(isUzbek
-                ? `Sayt orqali so‘rov: ${formData.get('name')}`
-                : `Website inquiry from ${formData.get('name')}`);
-            const body = encodeURIComponent([
-                `${isUzbek ? 'Ism / tashkilot' : 'Name / organization'}: ${formData.get('name')}`,
-                `${isUzbek ? 'Elektron pochta' : 'E-mail'}: ${formData.get('email')}`,
-                `${isUzbek ? 'Telefon' : 'Phone'}: ${formData.get('phone')}`,
-                '',
-                String(formData.get('message')),
-            ].join('\n'));
-            const email = contactForm.dataset.contactEmail;
-
-            if (!email) {
-                throw new Error('Contact form recipient is missing.');
-            }
-
-            window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-
-            if (successMessage) {
-                successMessage.textContent = document.documentElement.lang === 'en'
-                    ? 'Your e-mail application will open with the message ready to send.'
-                    : (document.documentElement.lang === 'uz'
-                        ? 'Tayyor xabar bilan elektron pochta ilovasi ochiladi.'
-                        : 'Почтовое приложение откроется с подготовленным сообщением.');
-                successMessage.hidden = false;
-            }
+            contactForm.submit();
         });
     }
 });
