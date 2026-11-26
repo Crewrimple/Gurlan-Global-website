@@ -15,6 +15,16 @@
                 <h1>{{ $site->text($locale, 'contact', 'page_heading') }}</h1>
             </div>
 
+            @if (session('status'))
+                <div class="contact-success contact-success-top" role="status" aria-live="polite">
+                    <span aria-hidden="true">✓</span>
+                    <div>
+                        <strong>{{ $english ? 'Request received' : ($uzbek ? 'So‘rov qabul qilindi' : 'Ваша заявка отправлена') }}</strong>
+                        <p>{{ session('status') }}</p>
+                    </div>
+                </div>
+            @endif
+
             <div class="contact-methods">
                 <article>
                     <h2>{{ $uzbek ? 'Elektron pochta' : 'Email' }}</h2>
@@ -74,15 +84,6 @@
                             <span class="contact-form-card-mark" aria-hidden="true">↗</span>
                         </div>
 
-                        @if (session('status'))
-                            <div class="contact-success" role="status">
-                                <span aria-hidden="true">✓</span>
-                                <div>
-                                    <strong>{{ $english ? 'Request received' : ($uzbek ? 'So‘rov qabul qilindi' : 'Ваша заявка отправлена') }}</strong>
-                                    <p>{{ session('status') }}</p>
-                                </div>
-                            </div>
-                        @endif
                         @if ($errors->any())
                             <p class="form-message form-error" role="alert">{{ $errors->first() }}</p>
                         @endif
