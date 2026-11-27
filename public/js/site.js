@@ -355,6 +355,68 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const analyticsConsent = document.querySelector('[data-analytics-consent]');
+    const analyticsSettingsButton = analyticsConsent?.querySelector('[data-analytics-settings]');
+    const analyticsSettingsPanel = analyticsConsent?.querySelector('[data-analytics-settings-panel]');
+    const analyticsOption = analyticsConsent?.querySelector('[data-analytics-option]');
+
+    const saveAnalyticsConsent = async (decision) => {
+        if (!analyticsConsent) {
+            return;
+        }
+
+            const endpoint = analyticsConsent.dataset.endpoint;
+            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+
+            if (!endpoint || !csrfToken) {
+                return;
+            }
+
+            analyticsConsent.classList.add('is-saving');
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken,
+                    },
+                    body: JSON.stringify({
+                        decision,
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Unable to save analytics preference.');
+                }
+
+                analyticsConsent.remove();
+
+                if (decision === 'accepted') {
+                    window.location.reload();
+                }
+            } catch {
+                analyticsConsent.classList.remove('is-saving');
+            }
+    };
+
+    analyticsSettingsButton?.addEventListener('click', () => {
+        if (!analyticsSettingsPanel) {
+            return;
+        }
+
+        analyticsSettingsPanel.hidden = !analyticsSettingsPanel.hidden;
+        analyticsSettingsButton.setAttribute('aria-expanded', String(!analyticsSettingsPanel.hidden));
+    });
+    analyticsConsent?.querySelector('[data-analytics-accept]')?.addEventListener('click', () => {
+        saveAnalyticsConsent('accepted');
+    });
+    analyticsConsent?.querySelector('[data-analytics-save]')?.addEventListener('click', () => {
+        saveAnalyticsConsent(analyticsOption?.checked ? 'accepted' : 'declined');
+    });
+
     const assistant = document.querySelector('[data-site-assistant]');
     const assistantToggle = assistant?.querySelector('[data-assistant-toggle]');
     const assistantPanel = assistant?.querySelector('[data-assistant-panel]');

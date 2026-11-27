@@ -13,6 +13,68 @@
             </a>
         @endforeach
     </div>
+
+    <section class="admin-analytics-section">
+        <div class="admin-section-heading">
+            <div>
+                <p class="admin-kicker">Аналитика сайта</p>
+                <h2 class="text-xl font-semibold">Посетители и просмотры</h2>
+            </div>
+            <span>Последние 30 дней</span>
+        </div>
+        <div class="admin-analytics-stats">
+            <article><span>Уникальные посетители</span><strong>{{ number_format($visitors, 0, '.', ' ') }}</strong><small>за 30 дней</small></article>
+            <article><span>Просмотры страниц</span><strong>{{ number_format($pageViews, 0, '.', ' ') }}</strong><small>за 30 дней</small></article>
+            <article><span>Посетители сегодня</span><strong>{{ number_format($todayVisitors, 0, '.', ' ') }}</strong><small>{{ number_format($todayPageViews, 0, '.', ' ') }} просмотров</small></article>
+        </div>
+        <div class="admin-analytics-layout">
+            <div class="admin-analytics-card">
+                <h3>Просмотры за 7 дней</h3>
+                <div class="admin-analytics-chart">
+                    @php($maximum = max(1, $dailyVisits->max('total')))
+                    @foreach ($dailyVisits as $day)
+                        <div class="admin-chart-column" title="{{ $day['date'] }}: {{ $day['total'] }}">
+                            <span style="height: {{ max(5, ($day['total'] / $maximum) * 100) }}%"></span>
+                            <small>{{ $day['label'] }}</small>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="admin-analytics-card">
+                <h3>Страны</h3>
+                @forelse ($topCountries as $country)
+                    <div class="admin-analytics-row">
+                        <span class="admin-country"><i aria-hidden="true">{{ $country->flag }}</i>{{ $country->name }}</span>
+                        <b>{{ $country->total }}</b>
+                    </div>
+                @empty
+                    <p class="admin-analytics-empty">Пока нет данных о стране. На Cloudflare они появятся автоматически.</p>
+                @endforelse
+            </div>
+        </div>
+        <div class="admin-analytics-layout is-bottom">
+            <div class="admin-analytics-card">
+                <h3>Популярные страницы</h3>
+                @forelse ($topPages as $page)
+                    <div class="admin-analytics-row"><span>{{ $page->path }}</span><b>{{ $page->total }}</b></div>
+                @empty
+                    <p class="admin-analytics-empty">Просмотры появятся после согласия посетителя.</p>
+                @endforelse
+            </div>
+            <div class="admin-analytics-card">
+                <h3>Устройства</h3>
+                @forelse ($devices as $device)
+                    <div class="admin-analytics-row">
+                        <span>{{ match ($device->device) { 'mobile' => 'Телефон', 'tablet' => 'Планшет', default => 'Компьютер' } }}</span>
+                        <b>{{ $device->total }}</b>
+                    </div>
+                @empty
+                    <p class="admin-analytics-empty">Данных пока нет.</p>
+                @endforelse
+            </div>
+        </div>
+    </section>
+
     <div class="mt-6 rounded-2xl border border-stone-200 bg-white p-6">
         <div class="admin-section-heading"><div><p class="admin-kicker">Быстрый доступ</p><h2 class="text-xl font-semibold">Что можно изменить</h2></div><span>RU · EN · UZ</span></div>
         <div class="admin-quick-grid">

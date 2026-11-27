@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\NewsPostController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\TeamMemberController;
+use App\Http\Controllers\AnalyticsConsentController;
 use App\Http\Controllers\AssistantController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,10 @@ Route::prefix('admin')->name('admin.')->middleware(['secure-admin', 'auth', 'adm
 
 Route::redirect('/', '/ru')->name('site.root');
 
+Route::post('/analytics/consent', AnalyticsConsentController::class)
+    ->middleware('throttle:20,1')
+    ->name('site.analytics.consent');
+
 Route::post('/{locale}/assistant', AssistantController::class)
     ->where('locale', 'ru|en|uz')
     ->middleware('throttle:12,1')
@@ -49,4 +54,5 @@ Route::get('/{locale}/{page?}', [SiteController::class, 'show'])
         'locale' => 'ru|en|uz',
         'page' => 'about|production|products|contact|news',
     ])
+    ->middleware('site-analytics')
     ->name('site.page');

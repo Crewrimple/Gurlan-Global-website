@@ -87,6 +87,26 @@
         @yield('content')
     </main>
 
+    @if (! in_array(request()->cookie('ggt_analytics_consent'), ['accepted', 'declined'], true))
+        <aside class="analytics-consent" data-analytics-consent data-endpoint="{{ route('site.analytics.consent') }}" aria-label="{{ $english ? 'Analytics preference' : ($uzbek ? 'Analitika sozlamalari' : 'Настройка аналитики') }}">
+            <div>
+                <strong>{{ $english ? 'Do you allow cookies on this site?' : ($uzbek ? 'Saytda cookie fayllardan foydalanishga ruxsat berasizmi?' : 'Разрешить использование файлов cookie?') }}</strong>
+                <p>{{ $english ? 'We use essential cookies to keep the site working and optional cookies to count visits, pages viewed, device type and approximate country — without names or contact details.' : ($uzbek ? 'Sayt ishlashi uchun zarur cookie fayllar hamda tashriflar, ko‘rilgan sahifalar, qurilma turi va taxminiy mamlakatni hisoblash uchun ixtiyoriy cookie fayllardan foydalanamiz — ism va aloqa ma’lumotlari saqlanmaydi.' : 'Мы используем необходимые cookie для работы сайта и дополнительные cookie для подсчёта посещений, просмотренных страниц, типа устройства и примерной страны — без имени и контактных данных.') }}</p>
+            </div>
+            <div class="analytics-consent-actions">
+                <button type="button" data-analytics-settings aria-expanded="false">{{ $english ? 'Settings' : ($uzbek ? 'Sozlash' : 'Настроить') }}</button>
+                <button type="button" data-analytics-accept>{{ $english ? 'Accept' : ($uzbek ? 'Qabul qilish' : 'Принять') }}</button>
+            </div>
+            <div class="analytics-consent-settings" data-analytics-settings-panel hidden>
+                <label>
+                    <span>{{ $english ? 'Visit and device statistics' : ($uzbek ? 'Tashrif va qurilma statistikasi' : 'Статистика посещений и устройств') }}</span>
+                    <input type="checkbox" checked data-analytics-option>
+                </label>
+                <button type="button" data-analytics-save>{{ $english ? 'Save selection' : ($uzbek ? 'Tanlovni saqlash' : 'Сохранить выбор') }}</button>
+            </div>
+        </aside>
+    @endif
+
     <aside class="site-assistant" data-site-assistant data-endpoint="{{ route('site.assistant.store', ['locale' => $locale]) }}">
         <button class="assistant-toggle" type="button" data-assistant-toggle aria-expanded="false" aria-controls="site-assistant-panel">
             <span class="assistant-logo">
