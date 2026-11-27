@@ -391,7 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
         assistant.classList.remove('is-open');
         assistantCloseTimer = window.setTimeout(() => {
             assistantPanel.hidden = true;
-        }, prefersReducedMotion ? 0 : 320);
+        }, prefersReducedMotion ? 0 : 260);
     };
 
     const appendAssistantMessage = (text, isBot = false, actions = []) => {

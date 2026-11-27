@@ -882,9 +882,9 @@ textarea:focus-visible {
     transform-origin: calc(100% - 24px) calc(100% - 24px);
     visibility: hidden;
     opacity: 0;
-    transform: translate3d(4px, 8px, 0) scale(.88);
+    transform: translate3d(3px, 6px, 0) scale(.94);
     pointer-events: none;
-    transition: opacity .2s ease, transform .3s cubic-bezier(.22, 1, .36, 1), visibility 0s linear .3s;
+    transition: opacity .18s ease, transform .24s cubic-bezier(.22, 1, .36, 1), visibility 0s linear .24s;
 }
 
 .assistant-panel.is-visible {
@@ -897,7 +897,7 @@ textarea:focus-visible {
 
 .site-assistant.is-open .assistant-toggle {
     opacity: 0;
-    transform: translateY(5px) scale(.92);
+    transform: translateY(4px) scale(.96);
     pointer-events: none;
 }
 
