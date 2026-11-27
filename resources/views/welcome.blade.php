@@ -141,7 +141,10 @@
             <div class="indicator-grid">
                 @foreach ($stats as $index => $stat)
                     <article class="indicator-card">
-                        <strong @if (in_array($index, [3, 5], true)) data-count-up @endif>{{ $stat[0] }}</strong>
+                        <strong
+                            @if (in_array($index, [3, 4, 5], true)) data-count-up @endif
+                            @if ($index === 4) data-count-up-plain @endif
+                        >{{ $stat[0] }}</strong>
                         <span>{{ $stat[1] }}</span>
                     </article>
                 @endforeach

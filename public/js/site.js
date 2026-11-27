@@ -118,30 +118,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const counter = entry.target;
                 const finalText = counter.textContent.trim();
-                const numberMatch = finalText.match(/^([\d,\s\u00a0\u202f]+)(.*)$/);
+                const numberMatch = finalText.match(/^(.*?)(\d+(?:[,\s\u00a0\u202f]+\d+)*)(.*)$/);
 
                 if (!numberMatch) {
-                    throw new Error('Count-up value must begin with a formatted number.');
+                    throw new Error('Count-up value must contain a formatted number.');
                 }
 
-                const targetValue = Number(numberMatch[1].replace(/\D/g, ''));
+                const prefix = numberMatch[1];
+                const targetValue = Number(numberMatch[2].replace(/\D/g, ''));
 
                 if (!Number.isSafeInteger(targetValue)) {
                     throw new Error('Count-up value must be a safe integer.');
                 }
 
-                const suffix = numberMatch[2];
+                const suffix = numberMatch[3];
                 const formatterLocale = document.documentElement.lang === 'ru'
                     ? 'ru-RU'
                     : (document.documentElement.lang === 'uz' ? 'uz-UZ' : 'en-US');
-                const formatter = new Intl.NumberFormat(formatterLocale);
+                const formatter = new Intl.NumberFormat(formatterLocale, {
+                    useGrouping: !counter.hasAttribute('data-count-up-plain'),
+                });
                 const startedAt = performance.now();
 
                 const animateCounter = (currentTime) => {
                     const progress = Math.min((currentTime - startedAt) / 1400, 1);
                     const easedProgress = 1 - Math.pow(1 - progress, 3);
 
-                    counter.textContent = `${formatter.format(Math.round(targetValue * easedProgress))}${suffix}`;
+                    counter.textContent = `${prefix}${formatter.format(Math.round(targetValue * easedProgress))}${suffix}`;
 
                     if (progress < 1) {
                         window.requestAnimationFrame(animateCounter);
