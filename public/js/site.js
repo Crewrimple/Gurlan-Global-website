@@ -363,19 +363,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const assistantMessages = assistant?.querySelector('[data-assistant-messages]');
     const assistantSuggestions = assistant?.querySelector('[data-assistant-suggestions]');
     const assistantInput = assistantForm?.querySelector('[name="question"]');
+    let assistantCloseTimer;
 
     const setAssistantOpen = (isOpen) => {
         if (!assistantPanel || !assistantToggle) {
             return;
         }
 
-        assistantPanel.hidden = !isOpen;
         assistantToggle.setAttribute('aria-expanded', String(isOpen));
+        window.clearTimeout(assistantCloseTimer);
 
         if (isOpen) {
-            assistantInput?.focus();
-            assistantMessages?.scrollTo({ top: assistantMessages.scrollHeight, behavior: 'smooth' });
+            assistantPanel.hidden = false;
+            assistant.classList.add('is-open');
+            window.requestAnimationFrame(() => {
+                window.requestAnimationFrame(() => {
+                    assistantPanel.classList.add('is-visible');
+                    assistantInput?.focus();
+                    assistantMessages?.scrollTo({ top: assistantMessages.scrollHeight, behavior: 'smooth' });
+                });
+            });
+
+            return;
         }
+
+        assistantPanel.classList.remove('is-visible');
+        assistant.classList.remove('is-open');
+        assistantCloseTimer = window.setTimeout(() => {
+            assistantPanel.hidden = true;
+        }, prefersReducedMotion ? 0 : 380);
     };
 
     const appendAssistantMessage = (text, isBot = false, actions = []) => {
@@ -413,9 +429,18 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     assistantToggle?.addEventListener('click', () => {
-        setAssistantOpen(assistantPanel?.hidden ?? false);
+        if (assistantPanel?.hidden) {
+            setAssistantOpen(true);
+        }
     });
     assistantClose?.addEventListener('click', () => setAssistantOpen(false));
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && assistantPanel && !assistantPanel.hidden) {
+            event.preventDefault();
+            setAssistantOpen(false);
+            assistantToggle?.focus();
+        }
+    });
     assistantSuggestions?.querySelectorAll('[data-assistant-question]').forEach((button) => {
         button.addEventListener('click', () => {
             if (assistantInput) {

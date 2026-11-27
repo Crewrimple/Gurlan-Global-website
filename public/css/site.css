@@ -812,7 +812,7 @@ textarea:focus-visible {
     color: #fff;
     font: 700 14px Gilroy, Arial, sans-serif;
     cursor: pointer;
-    transition: transform .24s ease, box-shadow .24s ease, background-color .24s ease;
+    transition: opacity .18s ease, transform .24s ease, box-shadow .24s ease, background-color .24s ease;
 }
 
 .assistant-toggle::after {
@@ -866,7 +866,11 @@ textarea:focus-visible {
 }
 
 .assistant-panel {
+    position: absolute;
+    right: 0;
+    bottom: 0;
     width: min(390px, calc(100vw - 32px));
+    max-height: calc(100dvh - 40px);
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, .66);
     border-radius: 28px;
@@ -875,10 +879,26 @@ textarea:focus-visible {
     backdrop-filter: blur(24px) saturate(135%);
     -webkit-backdrop-filter: blur(24px) saturate(135%);
     color: var(--ink);
+    transform-origin: calc(100% - 30px) calc(100% - 30px);
+    visibility: hidden;
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) scale(.72);
+    pointer-events: none;
+    transition: opacity .2s ease, transform .34s cubic-bezier(.2, .8, .2, 1), visibility 0s linear .34s;
 }
 
-.assistant-panel:not([hidden]) {
-    animation: assistant-panel-enter .24s ease both;
+.assistant-panel.is-visible {
+    visibility: visible;
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    pointer-events: auto;
+    transition-delay: 0s;
+}
+
+.site-assistant.is-open .assistant-toggle {
+    opacity: 0;
+    transform: translateY(10px) scale(.82);
+    pointer-events: none;
 }
 
 .assistant-panel-header {
@@ -4092,6 +4112,7 @@ textarea:focus-visible {
 
     .assistant-panel {
         width: calc(100vw - 24px);
+        max-height: calc(100dvh - 24px);
     }
 }
 
