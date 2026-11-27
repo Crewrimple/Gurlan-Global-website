@@ -110,7 +110,14 @@
     <aside class="site-assistant" data-site-assistant data-endpoint="{{ route('site.assistant.store', ['locale' => $locale]) }}">
         <button class="assistant-toggle" type="button" data-assistant-toggle aria-expanded="false" aria-controls="site-assistant-panel">
             <span class="assistant-logo">
-                <img src="{{ $site->media('logo') }}" alt="" width="34" height="34">
+                <svg viewBox="0 0 40 40" aria-hidden="true">
+                    <path d="M20 9V5"/>
+                    <circle cx="20" cy="4" r="1.2"/>
+                    <rect x="7" y="9" width="26" height="24" rx="9"/>
+                    <circle cx="15" cy="20" r="2"/>
+                    <circle cx="25" cy="20" r="2"/>
+                    <path d="M15 27c3 2 7 2 10 0"/>
+                </svg>
             </span>
             <span class="assistant-toggle-copy">
                 <strong>GGT AI</strong>
@@ -121,7 +128,14 @@
         <section class="assistant-panel" id="site-assistant-panel" data-assistant-panel role="dialog" aria-labelledby="site-assistant-title" hidden>
             <header class="assistant-panel-header">
                 <div class="assistant-brand-mark" aria-hidden="true">
-                    <span>AI</span>
+                    <svg viewBox="0 0 40 40">
+                        <path d="M20 9V5"/>
+                        <circle cx="20" cy="4" r="1.2"/>
+                        <rect x="7" y="9" width="26" height="24" rx="9"/>
+                        <circle cx="15" cy="20" r="2"/>
+                        <circle cx="25" cy="20" r="2"/>
+                        <path d="M15 27c3 2 7 2 10 0"/>
+                    </svg>
                 </div>
                 <div class="assistant-header-copy">
                     <span>GURLAN GLOBAL TEKS</span>
@@ -133,7 +147,14 @@
             <div class="assistant-messages" data-assistant-messages aria-live="polite">
                 <div class="assistant-welcome">
                     <div class="assistant-welcome-icon">
-                        <img src="{{ $site->media('logo') }}" alt="" width="54" height="54">
+                        <svg viewBox="0 0 40 40" aria-hidden="true">
+                            <path d="M20 9V5"/>
+                            <circle cx="20" cy="4" r="1.2"/>
+                            <rect x="7" y="9" width="26" height="24" rx="9"/>
+                            <circle cx="15" cy="20" r="2"/>
+                            <circle cx="25" cy="20" r="2"/>
+                            <path d="M15 27c3 2 7 2 10 0"/>
+                        </svg>
                     </div>
                     <span>{{ $english ? 'Welcome to Gurlan Global Teks' : ($uzbek ? 'Gurlan Global Teksga xush kelibsiz' : 'Добро пожаловать в Gurlan Global Teks') }}</span>
                     <h3>{{ $english ? 'How can I help you today?' : ($uzbek ? 'Bugun sizga qanday yordam bera olaman?' : 'Чем я могу помочь вам сегодня?') }}</h3>
