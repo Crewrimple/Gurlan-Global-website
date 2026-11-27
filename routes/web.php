@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\NewsPostController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\TeamMemberController;
+use App\Http\Controllers\AssistantController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,11 @@ Route::prefix('admin')->name('admin.')->middleware(['secure-admin', 'auth', 'adm
 });
 
 Route::redirect('/', '/ru')->name('site.root');
+
+Route::post('/{locale}/assistant', AssistantController::class)
+    ->where('locale', 'ru|en|uz')
+    ->middleware('throttle:12,1')
+    ->name('site.assistant.store');
 
 Route::post('/{locale}/contact', [SiteController::class, 'storeContact'])
     ->where('locale', 'ru|en|uz')

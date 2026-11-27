@@ -184,10 +184,10 @@ return [
         'production_capacity' => ['label' => 'Производство: фото мощностей', 'path' => 'gurlan-assets/production/production_s2/DSC04180.jpg'],
     ],
     'settings' => [
-        'phone' => ['label' => 'Телефон', 'value' => '+998 91 985 87 07'],
+        'phone' => ['label' => 'Телефон', 'value' => '+998 50 157 00 17'],
         'email' => ['label' => 'Email', 'value' => 'gurlanglobal@gmail.com'],
         'telegram' => ['label' => 'Telegram', 'value' => 'https://t.me/ggt_inc'],
-        'whatsapp' => ['label' => 'WhatsApp', 'value' => 'https://wa.me/998919858707'],
+        'whatsapp' => ['label' => 'WhatsApp', 'value' => 'https://wa.me/998501570017'],
         'instagram' => ['label' => 'Instagram', 'value' => 'https://www.instagram.com/ggt_textile/'],
         'uzum' => ['label' => 'Магазин Uzum', 'value' => 'https://uzum.uz/ru/shop/gurlanglobal'],
         'map' => ['label' => 'Ссылка на карту', 'value' => 'https://www.google.com/maps/place/Gurlan+Global+Teks/@41.8263463,60.3761645,17z'],

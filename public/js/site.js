@@ -354,4 +354,126 @@ document.addEventListener('DOMContentLoaded', () => {
             contactForm.submit();
         });
     }
+
+    const assistant = document.querySelector('[data-site-assistant]');
+    const assistantToggle = assistant?.querySelector('[data-assistant-toggle]');
+    const assistantPanel = assistant?.querySelector('[data-assistant-panel]');
+    const assistantClose = assistant?.querySelector('[data-assistant-close]');
+    const assistantForm = assistant?.querySelector('[data-assistant-form]');
+    const assistantMessages = assistant?.querySelector('[data-assistant-messages]');
+    const assistantSuggestions = assistant?.querySelector('[data-assistant-suggestions]');
+    const assistantInput = assistantForm?.querySelector('[name="question"]');
+
+    const setAssistantOpen = (isOpen) => {
+        if (!assistantPanel || !assistantToggle) {
+            return;
+        }
+
+        assistantPanel.hidden = !isOpen;
+        assistantToggle.setAttribute('aria-expanded', String(isOpen));
+
+        if (isOpen) {
+            assistantInput?.focus();
+            assistantMessages?.scrollTo({ top: assistantMessages.scrollHeight, behavior: 'smooth' });
+        }
+    };
+
+    const appendAssistantMessage = (text, isBot = false, actions = []) => {
+        if (!assistantMessages) {
+            return;
+        }
+
+        const message = document.createElement('div');
+        message.className = `assistant-message ${isBot ? 'is-bot' : 'is-user'}`;
+        const messageText = document.createElement('p');
+        messageText.textContent = text;
+        message.append(messageText);
+
+        if (isBot && actions.length > 0) {
+            const actionList = document.createElement('div');
+            actionList.className = 'assistant-actions';
+
+            actions.forEach((action) => {
+                if (!action || typeof action.label !== 'string' || typeof action.url !== 'string') {
+                    return;
+                }
+
+                const actionLink = document.createElement('a');
+                actionLink.href = action.url;
+                actionLink.textContent = action.label;
+                actionLink.append(' ↗');
+                actionList.append(actionLink);
+            });
+
+            message.append(actionList);
+        }
+
+        assistantMessages.append(message);
+        assistantMessages.scrollTo({ top: assistantMessages.scrollHeight, behavior: 'smooth' });
+    };
+
+    assistantToggle?.addEventListener('click', () => {
+        setAssistantOpen(assistantPanel?.hidden ?? false);
+    });
+    assistantClose?.addEventListener('click', () => setAssistantOpen(false));
+    assistantSuggestions?.querySelectorAll('[data-assistant-question]').forEach((button) => {
+        button.addEventListener('click', () => {
+            if (assistantInput) {
+                assistantInput.value = button.dataset.assistantQuestion || '';
+                assistantForm?.requestSubmit();
+            }
+        });
+    });
+
+    assistantForm?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const question = assistantInput?.value.trim();
+        const endpoint = assistant?.dataset.endpoint;
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+        const submitButton = assistantForm.querySelector('button[type="submit"]');
+
+        if (!question || !endpoint || !csrfToken || !submitButton) {
+            return;
+        }
+
+        appendAssistantMessage(question);
+        assistantInput.value = '';
+        submitButton.disabled = true;
+        assistantSuggestions?.setAttribute('hidden', '');
+
+        try {
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken,
+                },
+                body: JSON.stringify({
+                    question,
+                    website: assistantForm.querySelector('[name="website"]')?.value || '',
+                }),
+            });
+            const payload = await response.json();
+
+            if (!response.ok) {
+                throw new Error(payload.message || Object.values(payload.errors || {}).flat()[0] || 'Assistant request failed.');
+            }
+
+            appendAssistantMessage(payload.answer, true, payload.actions || []);
+        } catch (error) {
+            appendAssistantMessage(error instanceof Error
+                ? error.message
+                : (document.documentElement.lang === 'en'
+                    ? 'The assistant could not send a response.'
+                    : (document.documentElement.lang === 'uz'
+                        ? 'Yordamchi javob yubora olmadi.'
+                        : 'Помощник не смог отправить ответ.')), true);
+        } finally {
+            submitButton.disabled = false;
+            assistantInput.focus();
+        }
+    });
 });

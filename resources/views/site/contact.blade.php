@@ -161,7 +161,7 @@
                             </div>
                             <div class="contact-aside-links">
                                 <a href="https://t.me/ggt_inc" target="_blank" rel="noopener noreferrer">Telegram ↗</a>
-                                <a href="https://wa.me/998919858707" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+                                <a href="{{ $site->setting('whatsapp') }}" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
                             </div>
                         </article>
                         <article class="contact-aside-card">
