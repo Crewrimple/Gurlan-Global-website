@@ -89,6 +89,23 @@ it('creates exactly one administrator with the installation key', function () {
     expect(User::where('is_admin', true)->count())->toBe(1);
 });
 
+it('allows a 15 character password during the protected initial setup', function () {
+    config()->set('admin.setup_key', str_repeat('s', 32));
+
+    $this->post(route('admin.authenticate'), [
+        'setup_key' => str_repeat('s', 32),
+        'name' => 'Site Admin',
+        'email' => 'admin@example.com',
+        'password' => 'StrongPass123!@',
+        'password_confirmation' => 'StrongPass123!@',
+    ])->assertRedirect(route('admin.dashboard'));
+
+    $this->assertDatabaseHas('users', [
+        'email' => 'admin@example.com',
+        'is_admin' => true,
+    ]);
+});
+
 it('adds defensive headers to admin pages', function () {
     $this->get(route('admin.login'))
         ->assertHeader('X-Frame-Options', 'DENY')

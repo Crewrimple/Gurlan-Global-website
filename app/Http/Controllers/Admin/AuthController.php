@@ -57,7 +57,7 @@ class AuthController extends Controller
             'setup_key' => ['required', 'string', 'min:32'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
-            'password' => ['required', 'confirmed', Password::min(16)->letters()->mixedCase()->numbers()->symbols()],
+            'password' => ['required', 'confirmed', Password::min(15)->letters()->mixedCase()->numbers()->symbols()],
         ]);
 
         $configuredKey = (string) config('admin.setup_key');
